@@ -21,12 +21,10 @@
             --border: #e2e8f0;
             --shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
             --radius: 18px;
-            --radius-sm: 12px;
             --maxw: 1120px;
         }
 
         * { box-sizing: border-box; }
-
         html { scroll-behavior: smooth; }
 
         body {
@@ -60,7 +58,7 @@
             color: #fff;
             background:
                 linear-gradient(180deg, rgba(8, 15, 29, 0.30), rgba(8, 15, 29, 0.62)),
-                url('https://commons.wikimedia.org/wiki/Special:FilePath/1%20songzanlin%20aerial%20pano%202018.jpg') center/cover no-repeat;
+                url('images/hero-songzanlin.jpg') center/cover no-repeat;
         }
 
         .hero::after {
@@ -395,6 +393,12 @@
             border-radius: 999px;
             font-weight: 600;
             font-size: 0.95rem;
+            transition: all 0.2s ease;
+        }
+
+        .food-tag:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 16px rgba(217,130,43,0.15);
         }
 
         .tips {
@@ -421,6 +425,17 @@
             margin: 0;
             color: #475569;
             font-size: 0.96rem;
+        }
+
+        .source-list {
+            margin: 0;
+            padding-left: 18px;
+            color: #475569;
+        }
+
+        .source-list li {
+            margin-bottom: 8px;
+            word-break: break-word;
         }
 
         .footer {
@@ -557,7 +572,7 @@
                 <div class="highlight-box">
                     <ul class="highlight-list">
                         <li>一次串聯 <strong>昆明、大理、麗江、香格里拉</strong> 四大經典路線，景觀層次完整。</li>
-                        <li>涵蓋 <strong>洱海、玉龍雪山、藍月谷、虎跳峽、松讚林寺</strong> 等高辨識景點。</li>
+                        <li>涵蓋 <strong>洱海、玉龍雪山、普達措、虎跳峽、松讚林寺</strong> 等高辨識景點。</li>
                         <li>兼具 <strong>自然風光、古城慢旅、藏地文化、高原景觀</strong>，內容豐富不單調。</li>
                         <li>節奏安排上先低海拔後高海拔，有助於逐步適應高原環境。</li>
                     </ul>
@@ -719,7 +734,7 @@
 
                         <div class="photo-grid">
                             <div class="photo-card">
-                                <img loading="lazy" referrerpolicy="no-referrer" src="https://commons.wikimedia.org/wiki/Special:FilePath/Dianchi%20Lake.jpg" alt="昆明滇池風光" />
+                                <img loading="lazy" src="images/kunming-dianchi.jpg" alt="昆明滇池風光" />
                                 <span>昆明滇池｜春城最具代表性的湖岸景觀之一</span>
                             </div>
                         </div>
@@ -750,11 +765,11 @@
 
                         <div class="photo-grid">
                             <div class="photo-card">
-                                <img loading="lazy" referrerpolicy="no-referrer" src="https://commons.wikimedia.org/wiki/Special:FilePath/Erhai%20Lake%20Dali%2002.JPG" alt="大理洱海與湖岸風光" />
+                                <img loading="lazy" src="images/dali-erhai.jpg" alt="大理洱海與湖岸風光" />
                                 <span>洱海風光｜大理最具辨識度的湖景意象</span>
                             </div>
                             <div class="photo-card">
-                                <img loading="lazy" referrerpolicy="no-referrer" src="https://commons.wikimedia.org/wiki/Special:FilePath/Dali%20Old%20Town%2026.JPG" alt="大理古城街景" />
+                                <img loading="lazy" src="images/dali-old-town.jpg" alt="大理古城街景" />
                                 <span>大理古城｜保留白族聚落與古城生活感</span>
                             </div>
                         </div>
@@ -809,11 +824,11 @@
 
                         <div class="photo-grid">
                             <div class="photo-card">
-                                <img loading="lazy" referrerpolicy="no-referrer" src="https://commons.wikimedia.org/wiki/Special:FilePath/56430-Lijiang%20%2828273165830%29.jpg" alt="麗江古城街景" />
+                                <img loading="lazy" src="images/lijiang-old-town.jpg" alt="麗江古城街景" />
                                 <span>麗江古鎮｜更貼近古城街巷與木構建築氛圍</span>
                             </div>
                             <div class="photo-card">
-                                <img loading="lazy" referrerpolicy="no-referrer" src="https://commons.wikimedia.org/wiki/Special:FilePath/Yulong%20xue%20shan.jpg" alt="玉龍雪山與麗江遠景" />
+                                <img loading="lazy" src="images/lijiang-yulong-view.jpg" alt="玉龍雪山與麗江遠景" />
                                 <span>玉龍雪山｜從城市與山景關係呈現麗江特色</span>
                             </div>
                         </div>
@@ -844,11 +859,11 @@
 
                         <div class="photo-grid">
                             <div class="photo-card">
-                                <img loading="lazy" referrerpolicy="no-referrer" src="https://commons.wikimedia.org/wiki/Special:FilePath/1%20yulong%20xueshan%202012.jpg" alt="玉龍雪山近景" />
+                                <img loading="lazy" src="images/yulong-snow-mountain.jpg" alt="玉龍雪山近景" />
                                 <span>玉龍雪山｜更清楚呈現雪山本體與高海拔地貌</span>
                             </div>
                             <div class="photo-card">
-                                <img loading="lazy" referrerpolicy="no-referrer" src="https://commons.wikimedia.org/wiki/Special:FilePath/Yulong%20xue%20shan.jpg" alt="玉龍雪山與山谷景色" />
+                                <img loading="lazy" src="images/lijiang-yulong-view.jpg" alt="玉龍雪山與山谷景色" />
                                 <span>雪山山谷意象｜適合對應藍月谷與周邊高山景色</span>
                             </div>
                         </div>
@@ -879,11 +894,11 @@
 
                         <div class="photo-grid">
                             <div class="photo-card">
-                                <img loading="lazy" referrerpolicy="no-referrer" src="https://commons.wikimedia.org/wiki/Special:FilePath/Pudacuo%20National%20Park%20%2820573196943%29.jpg" alt="普達措國家森林公園" />
+                                <img loading="lazy" src="images/pudacuo-park.jpg" alt="普達措國家森林公園" />
                                 <span>普達措｜更符合高原湖泊與森林步道的行程意象</span>
                             </div>
                             <div class="photo-card">
-                                <img loading="lazy" referrerpolicy="no-referrer" src="https://commons.wikimedia.org/wiki/Special:FilePath/1%20songzanlin%20monastery%20yunnan%202018.jpg" alt="香格里拉藏地建築風格" />
+                                <img loading="lazy" src="images/songzanlin-monastery.jpg" alt="香格里拉藏地建築風格" />
                                 <span>藏地人文｜用建築語彙強化香格里拉文化感</span>
                             </div>
                         </div>
@@ -914,11 +929,11 @@
 
                         <div class="photo-grid">
                             <div class="photo-card">
-                                <img loading="lazy" referrerpolicy="no-referrer" src="https://commons.wikimedia.org/wiki/Special:FilePath/Songzanlin%20Monastery.jpg" alt="松讚林寺" />
+                                <img loading="lazy" src="images/songzanlin-monastery.jpg" alt="松讚林寺" />
                                 <span>松讚林寺｜香格里拉代表性的藏傳佛教地標</span>
                             </div>
                             <div class="photo-card">
-                                <img loading="lazy" referrerpolicy="no-referrer" src="https://commons.wikimedia.org/wiki/Special:FilePath/Meadow%20in%20Pudacuo.JPG" alt="高原草地與濕地景觀" />
+                                <img loading="lazy" src="images/shangrila-meadow.jpg" alt="高原草地與濕地景觀" />
                                 <span>高原草地意象｜補強依拉草原與納帕海的開闊感</span>
                             </div>
                         </div>
@@ -947,6 +962,60 @@
                         </ul>
                     </div>
                 </article>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title"><i class="fa-solid fa-cloud-sun"></i> 行程期間天氣參考</h2>
+            <div class="tips">
+                <div class="tip-card">
+                    <h4>昆明</h4>
+                    <p>3 月底到 4 月初通常白天溫和、早晚偏涼，建議準備薄外套與長袖，晚間外出仍會有涼意。</p>
+                </div>
+
+                <div class="tip-card">
+                    <h4>大理</h4>
+                    <p>洱海周邊風感較明顯，白天舒適，但晨晚溫差大，拍照與騎行時建議加一件防風外層。</p>
+                </div>
+
+                <div class="tip-card">
+                    <h4>麗江</h4>
+                    <p>白天適合活動拍照，但清晨、夜晚與雪山周邊較冷，需備保暖層、防曬用品與太陽眼鏡。</p>
+                </div>
+
+                <div class="tip-card">
+                    <h4>香格里拉</h4>
+                    <p>高海拔區域最冷，早晚寒意明顯，請攜帶厚外套、防風層、保暖配件，並避免低估高原體感。</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title"><i class="fa-solid fa-map"></i> 行程地圖導航</h2>
+            <div class="food-tags">
+                <a class="food-tag" href="https://api.map.baidu.com/geocoder?address=%E4%BA%91%E5%8D%97%E7%9C%81%E6%98%86%E6%98%8E%E5%B8%82&output=html" target="_blank" rel="noopener noreferrer">
+                    <i class="fa-solid fa-location-dot"></i> 昆明市地圖
+                </a>
+
+                <a class="food-tag" href="https://api.map.baidu.com/geocoder?address=%E4%BA%91%E5%8D%97%E5%A4%A7%E7%90%86&output=html" target="_blank" rel="noopener noreferrer">
+                    <i class="fa-solid fa-location-dot"></i> 大理市地圖
+                </a>
+
+                <a class="food-tag" href="https://j.map.baidu.com/40/4L-" target="_blank" rel="noopener noreferrer">
+                    <i class="fa-solid fa-location-dot"></i> 麗江古城
+                </a>
+
+                <a class="food-tag" href="https://j.map.baidu.com/4a/-M" target="_blank" rel="noopener noreferrer">
+                    <i class="fa-solid fa-location-dot"></i> 獨克宗古城
+                </a>
+
+                <a class="food-tag" href="https://j.map.baidu.com/01/2ls" target="_blank" rel="noopener noreferrer">
+                    <i class="fa-solid fa-location-dot"></i> 松讚林寺
+                </a>
+
+                <a class="food-tag" href="https://j.map.baidu.com/9IJ" target="_blank" rel="noopener noreferrer">
+                    <i class="fa-solid fa-location-dot"></i> 雲南省總覽地圖
+                </a>
             </div>
         </section>
 
@@ -988,6 +1057,25 @@
                     <p>參觀寺院請穿著得體，避免大聲喧嘩、隨意觸摸佛像，拍照前先確認現場規範。</p>
                 </div>
             </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title"><i class="fa-solid fa-image"></i> 圖片來源說明</h2>
+            <p style="margin-top:0; color:#475569;">
+                本頁旅遊圖片已建議下載至本站 <code>images/</code> 目錄後引用，以降低外部連結變動風險。原始來源主要為 Wikimedia Commons。
+            </p>
+            <ul class="source-list">
+                <li><strong>hero-songzanlin.jpg</strong>：Wikimedia Commons / 松讚林寺空拍</li>
+                <li><strong>kunming-dianchi.jpg</strong>：Wikimedia Commons / 昆明滇池</li>
+                <li><strong>dali-erhai.jpg</strong>：Wikimedia Commons / 大理洱海</li>
+                <li><strong>dali-old-town.jpg</strong>：Wikimedia Commons / 大理古城</li>
+                <li><strong>lijiang-old-town.jpg</strong>：Wikimedia Commons / 麗江古城</li>
+                <li><strong>lijiang-yulong-view.jpg</strong>：Wikimedia Commons / 麗江與玉龍雪山視角</li>
+                <li><strong>yulong-snow-mountain.jpg</strong>：Wikimedia Commons / 玉龍雪山近景</li>
+                <li><strong>pudacuo-park.jpg</strong>：Wikimedia Commons / 普達措國家森林公園</li>
+                <li><strong>songzanlin-monastery.jpg</strong>：Wikimedia Commons / 松讚林寺</li>
+                <li><strong>shangrila-meadow.jpg</strong>：Wikimedia Commons / 香格里拉高原草地意象</li>
+            </ul>
         </section>
     </main>
 
