@@ -166,13 +166,15 @@
         }
 
         .summary-list,
-        .highlight-list {
+        .highlight-list,
+        .source-list {
             margin: 0;
             padding-left: 18px;
         }
 
         .summary-list li,
-        .highlight-list li {
+        .highlight-list li,
+        .source-list li {
             margin-bottom: 10px;
         }
 
@@ -253,14 +255,55 @@
         .badge.transfer { background: #805ad5; }
         .badge.return { background: var(--success); }
 
+        .flight-cards { display: none; }
+
         .itinerary-list {
             display: grid;
             gap: 18px;
         }
 
+        .day-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .day-tab-btn {
+            border: 1px solid #d7e3ef;
+            background: #fff;
+            color: var(--primary);
+            padding: 10px 14px;
+            border-radius: 999px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .day-tab-btn:hover {
+            background: #f4f9fd;
+            border-color: #b8d7ee;
+        }
+
+        .day-tab-btn.active {
+            background: var(--primary);
+            color: #fff;
+            border-color: var(--primary);
+            box-shadow: 0 8px 18px rgba(31,58,95,0.18);
+        }
+
+        .day-panel {
+            display: none;
+        }
+
+        .day-panel.active {
+            display: block;
+        }
+
         .day-card {
             display: grid;
-            grid-template-columns: 88px 1fr;
+            grid-template-columns: 110px 1fr;
             gap: 16px;
             align-items: start;
         }
@@ -271,24 +314,26 @@
             background: linear-gradient(180deg, var(--primary), var(--primary-dark));
             color: #fff;
             border-radius: 18px;
-            min-height: 88px;
+            min-height: 96px;
             padding: 14px 10px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             box-shadow: 0 10px 24px rgba(31,58,95,0.22);
+            text-align: center;
         }
 
         .day-no small {
-            font-size: 0.8rem;
-            letter-spacing: 1px;
-            opacity: 0.85;
+            font-size: 0.78rem;
+            letter-spacing: 0.5px;
+            opacity: 0.9;
+            line-height: 1.4;
         }
 
         .day-no strong {
-            font-size: 1.5rem;
-            line-height: 1.1;
+            font-size: 1.35rem;
+            line-height: 1.15;
             margin-top: 4px;
         }
 
@@ -337,6 +382,39 @@
 
         .day-body li { margin-bottom: 8px; }
 
+        .spot-list {
+            display: grid;
+            gap: 12px;
+            margin: 14px 0 16px;
+        }
+
+        .spot-card {
+            background: #f8fbfd;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 14px 16px;
+        }
+
+        .spot-card h4 {
+            margin: 0 0 8px;
+            color: var(--primary);
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .spot-card h4 i {
+            color: var(--secondary);
+        }
+
+        .spot-card p {
+            margin: 0;
+            color: #475569;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
         .photo-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -365,6 +443,16 @@
             background: #fff;
         }
 
+        .day-summary-box {
+            margin-top: 14px;
+            padding: 12px 14px;
+            border-radius: 14px;
+            background: #fffaf3;
+            border: 1px solid #fde0b7;
+            color: #7a4b12;
+            font-size: 0.95rem;
+        }
+
         .stay-box {
             display: flex;
             align-items: center;
@@ -374,6 +462,7 @@
             background: #f8fbfd;
             border: 1px dashed #cdd9e5;
             color: #334155;
+            margin-top: 14px;
         }
 
         .food-tags {
@@ -427,15 +516,16 @@
             font-size: 0.96rem;
         }
 
-        .source-list {
-            margin: 0;
-            padding-left: 18px;
-            color: #475569;
+        .tip-card a {
+            color: var(--accent);
+            text-decoration: underline;
         }
 
-        .source-list li {
-            margin-bottom: 8px;
-            word-break: break-word;
+        code {
+            background: #f3f6f8;
+            padding: 2px 6px;
+            border-radius: 6px;
+            font-size: 0.92em;
         }
 
         .footer {
@@ -480,6 +570,18 @@
                 border-radius: 16px;
             }
 
+            .day-tabs {
+                overflow-x: auto;
+                flex-wrap: nowrap;
+                padding-bottom: 4px;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .day-tab-btn {
+                flex: 0 0 auto;
+                white-space: nowrap;
+            }
+
             .day-card { grid-template-columns: 1fr; }
 
             .day-no {
@@ -490,6 +592,7 @@
                 flex-direction: row;
                 justify-content: flex-start;
                 gap: 10px;
+                text-align: left;
             }
 
             .day-no strong { margin-top: 0; }
@@ -537,10 +640,6 @@
                 color: #475569;
                 font-size: 0.94rem;
             }
-        }
-
-        @media (min-width: 641px) {
-            .flight-cards { display: none; }
         }
     </style>
 </head>
@@ -714,338 +813,503 @@
         <section class="section">
             <h2 class="section-title"><i class="fa-solid fa-map-location-dot"></i> 每日詳細行程安排</h2>
 
+            <div class="day-tabs">
+                <button class="day-tab-btn active" data-day="day1">3/29(日) Day 1</button>
+                <button class="day-tab-btn" data-day="day2">3/30(一) Day 2</button>
+                <button class="day-tab-btn" data-day="day3">3/31(二) Day 3</button>
+                <button class="day-tab-btn" data-day="day4">4/01(三) Day 4</button>
+                <button class="day-tab-btn" data-day="day5">4/02(四) Day 5</button>
+                <button class="day-tab-btn" data-day="day6">4/03(五) Day 6</button>
+                <button class="day-tab-btn" data-day="day7">4/04(六) Day 7</button>
+                <button class="day-tab-btn" data-day="day8">4/05(日) Day 8</button>
+            </div>
+
             <div class="itinerary-list">
-                <article class="day-card">
-                    <div class="day-no"><small>DAY</small><strong>01</strong></div>
-                    <div class="day-body">
-                        <div class="day-top">
-                            <div>
-                                <h3 class="day-title">抵達昆明｜春城啟程</h3>
-                                <div class="day-sub">以昆明作為適應雲南氣候與節奏的起點</div>
+
+                <div class="day-panel active" id="day1">
+                    <article class="day-card">
+                        <div class="day-no"><small>3/29(日)</small><strong>Day 1</strong></div>
+                        <div class="day-body">
+                            <div class="day-top">
+                                <div>
+                                    <h3 class="day-title">抵達昆明｜春城啟程</h3>
+                                    <div class="day-sub">以昆明作為適應雲南氣候與節奏的起點</div>
+                                </div>
+                                <div class="day-tag">昆明</div>
                             </div>
-                            <div class="day-tag">昆明</div>
-                        </div>
 
-                        <ul>
-                            <li>抵達昆明長水國際機場，展開雲南旅程。</li>
-                            <li>安排專車接機，前往飯店休息，為後續行程保留體力。</li>
-                            <li>建議今日以早休息為主，讓身體逐步適應高原型氣候與日夜溫差。</li>
-                        </ul>
+                            <ul>
+                                <li>抵達昆明長水國際機場，展開雲南旅程。</li>
+                                <li>安排專車接機，前往飯店休息，為後續行程保留體力。</li>
+                                <li>建議今日以早休息為主，讓身體逐步適應高原型氣候與日夜溫差。</li>
+                            </ul>
 
-                        <div class="photo-grid">
-                            <div class="photo-card">
-                                <img loading="lazy" src="images/kunming-dianchi.jpg" alt="昆明滇池風光" />
-                                <span>昆明滇池｜春城最具代表性的湖岸景觀之一</span>
+                            <div class="spot-list">
+                                <div class="spot-card">
+                                    <h4><i class="fa-solid fa-location-dot"></i> 昆明</h4>
+                                    <p>昆明有「春城」之稱，全年氣候相對溫和，是多數雲南旅程的起點。城市節奏較輕鬆，適合旅程第一天先休息、調整體力，為後面的高原與移動行程做準備。</p>
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="stay-box">
-                            <i class="fa-solid fa-hotel"></i>
-                            <span><strong>住宿：</strong>昆明官渡華美達安可酒店（4 鑽）</span>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="day-card">
-                    <div class="day-no"><small>DAY</small><strong>02</strong></div>
-                    <div class="day-body">
-                        <div class="day-top">
-                            <div>
-                                <h3 class="day-title">昆明 ➜ 大理｜蒼山洱海的第一印象</h3>
-                                <div class="day-sub">大理最具代表性的畫面，就是蒼山、洱海與湖畔聚落</div>
+                            <div class="photo-grid">
+                                <div class="photo-card">
+                                    <img loading="lazy" src="images/kunming-dianchi.jpg" alt="昆明滇池風光" />
+                                    <span>昆明滇池｜春城最具代表性的湖岸景觀之一</span>
+                                </div>
                             </div>
-                            <div class="day-tag">大理</div>
-                        </div>
 
-                        <ul>
-                            <li>搭乘動車前往大理，移動效率高、舒適度佳。</li>
-                            <li>遊覽 <strong>龍龕碼頭</strong>、<strong>雙廊古鎮</strong>，安排南詔風情島遊船。</li>
-                            <li>前往 <strong>臥鹿山</strong>、<strong>文筆村</strong>、<strong>理想邦</strong>，感受洱海東岸的特色景觀。</li>
-                        </ul>
-
-                        <div class="photo-grid">
-                            <div class="photo-card">
-                                <img loading="lazy" src="images/dali-erhai.jpg" alt="大理洱海與湖岸風光" />
-                                <span>洱海風光｜大理最具辨識度的湖景意象</span>
+                            <div class="day-summary-box">
+                                今日重點：先適應雲南氣候與旅遊節奏，行程以輕鬆休息為主。
                             </div>
-                            <div class="photo-card">
-                                <img loading="lazy" src="images/dali-old-town.jpg" alt="大理古城街景" />
-                                <span>大理古城｜保留白族聚落與古城生活感</span>
+
+                            <div class="stay-box">
+                                <i class="fa-solid fa-hotel"></i>
+                                <span><strong>住宿：</strong>昆明官渡華美達安可酒店（4 鑽）</span>
                             </div>
                         </div>
+                    </article>
+                </div>
 
-                        <div class="stay-box">
-                            <i class="fa-solid fa-hotel"></i>
-                            <span><strong>住宿：</strong>大理古曼酒店（4 鑽）</span>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="day-card">
-                    <div class="day-no"><small>DAY</small><strong>03</strong></div>
-                    <div class="day-body">
-                        <div class="day-top">
-                            <div>
-                                <h3 class="day-title">大理｜海西騎行與古城慢時光</h3>
-                                <div class="day-sub">今天的重點是放慢腳步，享受大理舒服的節奏感</div>
+                <div class="day-panel" id="day2">
+                    <article class="day-card">
+                        <div class="day-no"><small>3/30(一)</small><strong>Day 2</strong></div>
+                        <div class="day-body">
+                            <div class="day-top">
+                                <div>
+                                    <h3 class="day-title">昆明 ➜ 大理｜蒼山洱海的第一印象</h3>
+                                    <div class="day-sub">大理最具代表性的畫面，就是蒼山、洱海與湖畔聚落</div>
+                                </div>
+                                <div class="day-tag">大理</div>
                             </div>
-                            <div class="day-tag">洱海慢旅</div>
-                        </div>
 
-                        <ul>
-                            <li>前往海西 <strong>馬久邑</strong>，體驗環海騎行與湖畔拍照。</li>
-                            <li>漫步 <strong>大理古城</strong>、<strong>洋人街</strong>，感受大理的人文氣息與商圈風格。</li>
-                            <li>建議今天以舒適穿搭為主，保留時間給咖啡館與街景探索。</li>
-                        </ul>
+                            <ul>
+                                <li>搭乘動車前往大理，移動效率高、舒適度佳。</li>
+                                <li>遊覽 <strong>龍龕碼頭</strong>、<strong>雙廊古鎮</strong>，安排南詔風情島遊船。</li>
+                                <li>前往 <strong>臥鹿山</strong>、<strong>文筆村</strong>、<strong>理想邦</strong>，感受洱海東岸的特色景觀。</li>
+                            </ul>
 
-                        <div class="stay-box">
-                            <i class="fa-solid fa-hotel"></i>
-                            <span><strong>住宿：</strong>大理古曼酒店（4 鑽）</span>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="day-card">
-                    <div class="day-no"><small>DAY</small><strong>04</strong></div>
-                    <div class="day-body">
-                        <div class="day-top">
-                            <div>
-                                <h3 class="day-title">大理 ➜ 麗江｜古鎮與雪山視角</h3>
-                                <div class="day-sub">麗江的魅力在於古鎮紋理與玉龍雪山的遠景結合</div>
+                            <div class="spot-list">
+                                <div class="spot-card">
+                                    <h4><i class="fa-solid fa-water"></i> 龍龕碼頭</h4>
+                                    <p>龍龕碼頭是大理欣賞洱海與蒼山同框的熱門地點，視野開闊，適合拍攝湖面、天空與遠山層次，是很典型的「大理印象」場景。</p>
+                                </div>
+                                <div class="spot-card">
+                                    <h4><i class="fa-solid fa-landmark"></i> 雙廊古鎮</h4>
+                                    <p>雙廊以湖景民宿、文青氛圍與慢生活聞名，是洱海沿線最具旅遊辨識度的聚落之一，適合散步、喝咖啡、拍街景與湖景。</p>
+                                </div>
+                                <div class="spot-card">
+                                    <h4><i class="fa-solid fa-ship"></i> 南詔風情島</h4>
+                                    <p>南詔風情島位於洱海中，結合島景、水景與人文意象，是大理湖上旅遊的重要體驗點，搭船前往也能提升旅程儀式感。</p>
+                                </div>
+                                <div class="spot-card">
+                                    <h4><i class="fa-solid fa-camera-retro"></i> 理想邦</h4>
+                                    <p>理想邦因階梯式白色建築與湖景視角受到歡迎，風格明亮，拍照辨識度高，很適合旅遊頁面與團體紀念照。</p>
+                                </div>
                             </div>
-                            <div class="day-tag">麗江</div>
-                        </div>
 
-                        <ul>
-                            <li>前往麗江，依序探訪 <strong>束河古鎮</strong>、<strong>白沙古鎮</strong>。</li>
-                            <li>造訪 <strong>玉湖村</strong>，從村落視角近看玉龍雪山。</li>
-                            <li>今日適合多拍古建築、街巷與雪山背景的合照。</li>
-                        </ul>
-
-                        <div class="photo-grid">
-                            <div class="photo-card">
-                                <img loading="lazy" src="images/lijiang-old-town.jpg" alt="麗江古城街景" />
-                                <span>麗江古鎮｜更貼近古城街巷與木構建築氛圍</span>
+                            <div class="photo-grid">
+                                <div class="photo-card">
+                                    <img loading="lazy" src="images/dali-erhai.jpg" alt="大理洱海與湖岸風光" />
+                                    <span>洱海風光｜大理最具辨識度的湖景意象</span>
+                                </div>
+                                <div class="photo-card">
+                                    <img loading="lazy" src="images/dali-old-town.jpg" alt="大理古城街景" />
+                                    <span>大理古城｜保留白族聚落與古城生活感</span>
+                                </div>
                             </div>
-                            <div class="photo-card">
-                                <img loading="lazy" src="images/lijiang-yulong-view.jpg" alt="玉龍雪山與麗江遠景" />
-                                <span>玉龍雪山｜從城市與山景關係呈現麗江特色</span>
+
+                            <div class="day-summary-box">
+                                今日重點：進入大理最經典的湖光山色路線，適合拍照與感受慢旅氛圍。
                             </div>
-                        </div>
 
-                        <div class="stay-box">
-                            <i class="fa-solid fa-hotel"></i>
-                            <span><strong>住宿：</strong>麗江隱廬秀園（4 鑽）</span>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="day-card">
-                    <div class="day-no"><small>DAY</small><strong>05</strong></div>
-                    <div class="day-body">
-                        <div class="day-top">
-                            <div>
-                                <h3 class="day-title">麗江｜玉龍雪山與藍月谷</h3>
-                                <div class="day-sub">玉龍雪山與藍月谷是麗江最具代表性的自然景觀組合</div>
-                            </div>
-                            <div class="day-tag">雪山重點日</div>
-                        </div>
-
-                        <ul>
-                            <li>搭乘大索道前往 <strong>冰川公園</strong>，感受高海拔雪山景觀。</li>
-                            <li>續遊 <strong>雲杉坪</strong>、<strong>藍月谷</strong>，欣賞高原湖水與雪山地貌。</li>
-                            <li>今日建議攜帶太陽眼鏡、防曬乳與保暖外套。</li>
-                        </ul>
-
-                        <div class="photo-grid">
-                            <div class="photo-card">
-                                <img loading="lazy" src="images/yulong-snow-mountain.jpg" alt="玉龍雪山近景" />
-                                <span>玉龍雪山｜更清楚呈現雪山本體與高海拔地貌</span>
-                            </div>
-                            <div class="photo-card">
-                                <img loading="lazy" src="images/lijiang-yulong-view.jpg" alt="玉龍雪山與山谷景色" />
-                                <span>雪山山谷意象｜適合對應藍月谷與周邊高山景色</span>
+                            <div class="stay-box">
+                                <i class="fa-solid fa-hotel"></i>
+                                <span><strong>住宿：</strong>大理古曼酒店（4 鑽）</span>
                             </div>
                         </div>
+                    </article>
+                </div>
 
-                        <div class="stay-box">
-                            <i class="fa-solid fa-hotel"></i>
-                            <span><strong>住宿：</strong>麗江隱廬秀園（4 鑽）</span>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="day-card">
-                    <div class="day-no"><small>DAY</small><strong>06</strong></div>
-                    <div class="day-body">
-                        <div class="day-top">
-                            <div>
-                                <h3 class="day-title">麗江 ➜ 香格里拉｜進入高原藏地風景</h3>
-                                <div class="day-sub">香格里拉行程的辨識度在於峽谷、湖泊、草原與藏文化</div>
+                <div class="day-panel" id="day3">
+                    <article class="day-card">
+                        <div class="day-no"><small>3/31(二)</small><strong>Day 3</strong></div>
+                        <div class="day-body">
+                            <div class="day-top">
+                                <div>
+                                    <h3 class="day-title">大理｜海西慢遊與古城時光</h3>
+                                    <div class="day-sub">今天以輕鬆散步與街區探索為主，不安排騎行活動</div>
+                                </div>
+                                <div class="day-tag">大理慢旅</div>
                             </div>
-                            <div class="day-tag">香格里拉</div>
-                        </div>
 
-                        <ul>
-                            <li>途中經過 <strong>虎跳峽</strong>、長江第一灣，感受峽谷地形的震撼。</li>
-                            <li>前往 <strong>普達措國家森林公園</strong>，漫步碧塔海、屬都湖周邊步道。</li>
-                            <li>夜訪 <strong>獨克宗古城</strong>，欣賞藏式建築與轉經筒夜景。</li>
-                        </ul>
+                            <ul>
+                                <li>前往海西一帶慢遊，欣賞洱海周邊聚落與湖岸景致。</li>
+                                <li>漫步 <strong>大理古城</strong>、<strong>洋人街</strong>，感受大理的人文氣息與商圈風格。</li>
+                                <li>建議今天以舒適穿搭為主，保留時間給咖啡館、街景與拍照散策。</li>
+                            </ul>
 
-                        <div class="photo-grid">
-                            <div class="photo-card">
-                                <img loading="lazy" src="images/pudacuo-park.jpg" alt="普達措國家森林公園" />
-                                <span>普達措｜更符合高原湖泊與森林步道的行程意象</span>
+                            <div class="spot-list">
+                                <div class="spot-card">
+                                    <h4><i class="fa-solid fa-water"></i> 海西慢遊</h4>
+                                    <p>海西一帶的魅力在於臨湖視野、村落風景與悠閒節奏，不一定要以騎行方式體驗，單純散步、停留拍照、感受湖邊空氣，也很適合團體旅遊。</p>
+                                </div>
+                                <div class="spot-card">
+                                    <h4><i class="fa-solid fa-archway"></i> 大理古城</h4>
+                                    <p>大理古城融合白族文化、古城街巷與觀光商圈特色，是認識大理人文面貌的重要地點，白天與夜晚都有不同氛圍。</p>
+                                </div>
+                                <div class="spot-card">
+                                    <h4><i class="fa-solid fa-mug-hot"></i> 洋人街</h4>
+                                    <p>洋人街聚集餐廳、咖啡館與特色小店，具有濃厚休閒感，適合作為自由散策與購買伴手禮的區域。</p>
+                                </div>
                             </div>
-                            <div class="photo-card">
-                                <img loading="lazy" src="images/songzanlin-monastery.jpg" alt="香格里拉藏地建築風格" />
-                                <span>藏地人文｜用建築語彙強化香格里拉文化感</span>
+
+                            <div class="day-summary-box">
+                                今日重點：放慢腳步，用散步與停留的方式感受大理生活感，不安排騎行。
                             </div>
-                        </div>
 
-                        <div class="stay-box">
-                            <i class="fa-solid fa-hotel"></i>
-                            <span><strong>住宿：</strong>香格里拉頤庭酒店（4 鑽）</span>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="day-card">
-                    <div class="day-no"><small>DAY</small><strong>07</strong></div>
-                    <div class="day-body">
-                        <div class="day-top">
-                            <div>
-                                <h3 class="day-title">香格里拉 ➜ 昆明｜松讚林寺與草原景致</h3>
-                                <div class="day-sub">松讚林寺是香格里拉最具辨識度的藏傳佛教地標之一</div>
-                            </div>
-                            <div class="day-tag">藏地文化</div>
-                        </div>
-
-                        <ul>
-                            <li>參訪 <strong>松讚林寺</strong>，感受宏偉的藏傳佛教建築風格。</li>
-                            <li>遊覽 <strong>依拉草原・納帕海</strong>，欣賞高原草地與濕地景觀。</li>
-                            <li>傍晚搭乘動車返回昆明，為隔日返程做準備。</li>
-                        </ul>
-
-                        <div class="photo-grid">
-                            <div class="photo-card">
-                                <img loading="lazy" src="images/songzanlin-monastery.jpg" alt="松讚林寺" />
-                                <span>松讚林寺｜香格里拉代表性的藏傳佛教地標</span>
-                            </div>
-                            <div class="photo-card">
-                                <img loading="lazy" src="images/shangrila-meadow.jpg" alt="高原草地與濕地景觀" />
-                                <span>高原草地意象｜補強依拉草原與納帕海的開闊感</span>
+                            <div class="stay-box">
+                                <i class="fa-solid fa-hotel"></i>
+                                <span><strong>住宿：</strong>大理古曼酒店（4 鑽）</span>
                             </div>
                         </div>
+                    </article>
+                </div>
 
-                        <div class="stay-box">
-                            <i class="fa-solid fa-hotel"></i>
-                            <span><strong>住宿：</strong>昆明官渡華美達安可酒店（4 鑽）</span>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="day-card">
-                    <div class="day-no"><small>DAY</small><strong>08</strong></div>
-                    <div class="day-body">
-                        <div class="day-top">
-                            <div>
-                                <h3 class="day-title">昆明送機｜帶著回憶返家</h3>
-                                <div class="day-sub">旅程收尾，整理照片與伴手禮，準備返程</div>
+                <div class="day-panel" id="day4">
+                    <article class="day-card">
+                        <div class="day-no"><small>4/01(三)</small><strong>Day 4</strong></div>
+                        <div class="day-body">
+                            <div class="day-top">
+                                <div>
+                                    <h3 class="day-title">大理 ➜ 麗江｜古鎮與雪山視角</h3>
+                                    <div class="day-sub">麗江的魅力在於古鎮紋理與玉龍雪山的遠景結合</div>
+                                </div>
+                                <div class="day-tag">麗江</div>
                             </div>
-                            <div class="day-tag">返程日</div>
-                        </div>
 
-                        <ul>
-                            <li>依照航班時間安排送機前往昆明長水機場。</li>
-                            <li>經上海轉機返回台北，結束本次雲南之旅。</li>
-                        </ul>
-                    </div>
-                </article>
+                            <ul>
+                                <li>前往麗江，依序探訪 <strong>束河古鎮</strong>、<strong>白沙古鎮</strong>。</li>
+                                <li>造訪 <strong>玉湖村</strong>，從村落視角近看玉龍雪山。</li>
+                                <li>今日適合多拍古建築、街巷與雪山背景的合照。</li>
+                            </ul>
+
+                            <div class="spot-list">
+                                <div class="spot-card">
+                                    <h4><i class="fa-solid fa-house-chimney-window"></i> 束河古鎮</h4>
+                                    <p>束河古鎮相較麗江大研古城更安靜，保留較多緩慢與生活感，適合想看古鎮建築又不想太擁擠的旅人。</p>
+                                </div>
+                                <div class="spot-card">
+                                    <h4><i class="fa-solid fa-mountain-city"></i> 白沙古鎮</h4>
+                                    <p>白沙古鎮更接近納西文化原貌，氛圍質樸，近年很受喜歡人文與老街氣息的旅人喜愛。</p>
+                                </div>
+                                <div class="spot-card">
+                                    <h4><i class="fa-solid fa-mountain"></i> 玉湖村</h4>
+                                    <p>玉湖村因靠近玉龍雪山而擁有極佳雪山視角，村落與雪山相映，是麗江旅遊中很有故事感的地點。</p>
+                                </div>
+                            </div>
+
+                            <div class="photo-grid">
+                                <div class="photo-card">
+                                    <img loading="lazy" src="images/lijiang-old-town.jpg" alt="麗江古城街景" />
+                                    <span>麗江古鎮｜更貼近古城街巷與木構建築氛圍</span>
+                                </div>
+                                <div class="photo-card">
+                                    <img loading="lazy" src="images/lijiang-yulong-view.jpg" alt="玉龍雪山與麗江遠景" />
+                                    <span>玉龍雪山｜從城市與山景關係呈現麗江特色</span>
+                                </div>
+                            </div>
+
+                            <div class="day-summary-box">
+                                今日重點：從古鎮人文走進雪山視角，是麗江最有層次的一天。
+                            </div>
+
+                            <div class="stay-box">
+                                <i class="fa-solid fa-hotel"></i>
+                                <span><strong>住宿：</strong>麗江隱廬秀園（4 鑽）</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="day-panel" id="day5">
+                    <article class="day-card">
+                        <div class="day-no"><small>4/02(四)</small><strong>Day 5</strong></div>
+                        <div class="day-body">
+                            <div class="day-top">
+                                <div>
+                                    <h3 class="day-title">麗江｜玉龍雪山與藍月谷</h3>
+                                    <div class="day-sub">玉龍雪山與藍月谷是麗江最具代表性的自然景觀組合</div>
+                                </div>
+                                <div class="day-tag">雪山重點日</div>
+                            </div>
+
+                            <ul>
+                                <li>搭乘大索道前往 <strong>冰川公園</strong>，感受高海拔雪山景觀。</li>
+                                <li>續遊 <strong>雲杉坪</strong>、<strong>藍月谷</strong>，欣賞高原湖水與雪山地貌。</li>
+                                <li>今日建議攜帶太陽眼鏡、防曬乳與保暖外套。</li>
+                            </ul>
+
+                            <div class="spot-list">
+                                <div class="spot-card">
+                                    <h4><i class="fa-solid fa-snowflake"></i> 冰川公園</h4>
+                                    <p>冰川公園是玉龍雪山最受矚目的高海拔景點之一，可近距離感受雪山壓迫感與高原地貌，是本趟旅程的自然景觀高潮。</p>
+                                </div>
+                                <div class="spot-card">
+                                    <h4><i class="fa-solid fa-tree"></i> 雲杉坪</h4>
+                                    <p>雲杉坪以高山草甸與森林景色聞名，視野較柔和，與冰川公園形成不同層次的雪山體驗。</p>
+                                </div>
+                                <div class="spot-card">
+                                    <h4><i class="fa-solid fa-droplet"></i> 藍月谷</h4>
+                                    <p>藍月谷以色澤鮮明的湖水與山谷地形著稱，常被視為麗江最夢幻的拍照景點之一，非常適合旅遊頁面呈現。</p>
+                                </div>
+                            </div>
+
+                            <div class="photo-grid">
+                                <div class="photo-card">
+                                    <img loading="lazy" src="images/yulong-snow-mountain.jpg" alt="玉龍雪山近景" />
+                                    <span>玉龍雪山｜更清楚呈現雪山本體與高海拔地貌</span>
+                                </div>
+                                <div class="photo-card">
+                                    <img loading="lazy" src="images/lijiang-yulong-view.jpg" alt="玉龍雪山與山谷景色" />
+                                    <span>雪山山谷意象｜適合對應藍月谷與周邊高山景色</span>
+                                </div>
+                            </div>
+
+                            <div class="day-summary-box">
+                                今日重點：本趟自然景觀代表日，需特別注意保暖、防曬與高原反應。
+                            </div>
+
+                            <div class="stay-box">
+                                <i class="fa-solid fa-hotel"></i>
+                                <span><strong>住宿：</strong>麗江隱廬秀園（4 鑽）</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="day-panel" id="day6">
+                    <article class="day-card">
+                        <div class="day-no"><small>4/03(五)</small><strong>Day 6</strong></div>
+                        <div class="day-body">
+                            <div class="day-top">
+                                <div>
+                                    <h3 class="day-title">麗江 ➜ 香格里拉｜進入高原藏地風景</h3>
+                                    <div class="day-sub">香格里拉行程的辨識度在於峽谷、湖泊、草原與藏文化</div>
+                                </div>
+                                <div class="day-tag">香格里拉</div>
+                            </div>
+
+                            <ul>
+                                <li>途中經過 <strong>虎跳峽</strong>、長江第一灣，感受峽谷地形的震撼。</li>
+                                <li>前往 <strong>普達措國家森林公園</strong>，漫步碧塔海、屬都湖周邊步道。</li>
+                                <li>夜訪 <strong>獨克宗古城</strong>，欣賞藏式建築與轉經筒夜景。</li>
+                            </ul>
+
+                            <div class="spot-list">
+                                <div class="spot-card">
+                                    <h4><i class="fa-solid fa-water"></i> 虎跳峽</h4>
+                                    <p>虎跳峽是中國知名峽谷景觀之一，以地勢落差大、水流湍急聞名，視覺震撼力很強，是由麗江前往香格里拉途中最具代表性的自然景點。</p>
+                                </div>
+                                <div class="spot-card">
+                                    <h4><i class="fa-solid fa-leaf"></i> 普達措國家森林公園</h4>
+                                    <p>普達措結合湖泊、森林、草甸與高原生態，是香格里拉自然風景的代表，步道友善，適合慢慢感受高原寧靜感。</p>
+                                </div>
+                                <div class="spot-card">
+                                    <h4><i class="fa-solid fa-city"></i> 獨克宗古城</h4>
+                                    <p>獨克宗古城有濃厚藏式聚落特色，夜間氣氛尤其迷人，巨大的轉經筒更是當地極具辨識度的文化符號。</p>
+                                </div>
+                            </div>
+
+                            <div class="photo-grid">
+                                <div class="photo-card">
+                                    <img loading="lazy" src="images/pudacuo-park.jpg" alt="普達措國家森林公園" />
+                                    <span>普達措｜更符合高原湖泊與森林步道的行程意象</span>
+                                </div>
+                                <div class="photo-card">
+                                    <img loading="lazy" src="images/songzanlin-monastery.jpg" alt="香格里拉藏地建築風格" />
+                                    <span>藏地人文｜用建築語彙強化香格里拉文化感</span>
+                                </div>
+                            </div>
+
+                            <div class="day-summary-box">
+                                今日重點：從自然峽谷進入高原藏地，是旅程氣氛轉換最明顯的一天。
+                            </div>
+
+                            <div class="stay-box">
+                                <i class="fa-solid fa-hotel"></i>
+                                <span><strong>住宿：</strong>香格里拉頤庭酒店（4 鑽）</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="day-panel" id="day7">
+                    <article class="day-card">
+                        <div class="day-no"><small>4/04(六)</small><strong>Day 7</strong></div>
+                        <div class="day-body">
+                            <div class="day-top">
+                                <div>
+                                    <h3 class="day-title">香格里拉 ➜ 昆明｜松讚林寺與草原景致</h3>
+                                    <div class="day-sub">松讚林寺是香格里拉最具辨識度的藏傳佛教地標之一</div>
+                                </div>
+                                <div class="day-tag">藏地文化</div>
+                            </div>
+
+                            <ul>
+                                <li>參訪 <strong>松讚林寺</strong>，感受宏偉的藏傳佛教建築風格。</li>
+                                <li>遊覽 <strong>依拉草原・納帕海</strong>，欣賞高原草地與濕地景觀。</li>
+                                <li>傍晚搭乘動車返回昆明，為隔日返程做準備。</li>
+                            </ul>
+
+                            <div class="spot-list">
+                                <div class="spot-card">
+                                    <h4><i class="fa-solid fa-place-of-worship"></i> 松讚林寺</h4>
+                                    <p>松讚林寺被稱為「小布達拉宮」，是雲南藏傳佛教的重要寺院之一，建築層層堆疊、氣勢鮮明，是香格里拉最具代表性的文化地標。</p>
+                                </div>
+                                <div class="spot-card">
+                                    <h4><i class="fa-solid fa-horse"></i> 依拉草原・納帕海</h4>
+                                    <p>依拉草原與納帕海展現高原地區的開闊感，草地、濕地、天空與遠山共同構成香格里拉典型的地景氛圍。</p>
+                                </div>
+                            </div>
+
+                            <div class="photo-grid">
+                                <div class="photo-card">
+                                    <img loading="lazy" src="images/songzanlin-monastery.jpg" alt="松讚林寺" />
+                                    <span>松讚林寺｜香格里拉代表性的藏傳佛教地標</span>
+                                </div>
+                                <div class="photo-card">
+                                    <img loading="lazy" src="images/shangrila-meadow.jpg" alt="高原草地與濕地景觀" />
+                                    <span>高原草地意象｜補強依拉草原與納帕海的開闊感</span>
+                                </div>
+                            </div>
+
+                            <div class="day-summary-box">
+                                今日重點：藏地文化與高原草地的收尾段落，適合整理此行最有記憶點的畫面。
+                            </div>
+
+                            <div class="stay-box">
+                                <i class="fa-solid fa-hotel"></i>
+                                <span><strong>住宿：</strong>昆明官渡華美達安可酒店（4 鑽）</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="day-panel" id="day8">
+                    <article class="day-card">
+                        <div class="day-no"><small>4/05(日)</small><strong>Day 8</strong></div>
+                        <div class="day-body">
+                            <div class="day-top">
+                                <div>
+                                    <h3 class="day-title">昆明送機｜帶著回憶返家</h3>
+                                    <div class="day-sub">旅程收尾，整理照片與伴手禮，準備返程</div>
+                                </div>
+                                <div class="day-tag">返程日</div>
+                            </div>
+
+                            <ul>
+                                <li>依照航班時間安排送機前往昆明長水機場。</li>
+                                <li>經上海轉機返回台北，結束本次雲南之旅。</li>
+                            </ul>
+
+                            <div class="spot-list">
+                                <div class="spot-card">
+                                    <h4><i class="fa-solid fa-suitcase-rolling"></i> 返程整理</h4>
+                                    <p>今天建議預留時間整理行李、照片與伴手禮，也可回顧這趟旅程中最喜歡的城市、景點與美食，讓旅行有完整收尾。</p>
+                                </div>
+                            </div>
+
+                            <div class="day-summary-box">
+                                今日重點：把美好回憶帶回家，完成這趟雲南之旅的最後一頁。
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
             </div>
         </section>
 
         <section class="section">
-    <h2 class="section-title"><i class="fa-solid fa-cloud-sun"></i> 行程期間天氣參考（2026/03/29–04/05）</h2>
+            <h2 class="section-title"><i class="fa-solid fa-cloud-sun"></i> 行程期間天氣參考（2026/03/29–04/05）</h2>
 
-    <p style="margin-top:0; color:#475569;">
-        以下為目前可查到的長天期預估，適合用來準備衣物與行李；
-        長天期預報仍可能變動，建議出發前 3–5 天再更新一次。
-    </p>
+            <p style="margin-top:0; color:#475569;">
+                以下為目前可查到的長天期預估，適合用來準備衣物與行李；長天期預報仍可能變動，建議出發前 3–5 天再更新一次。
+            </p>
 
-    <div class="tips">
-        <div class="tip-card">
-            <h4>昆明</h4>
-            <p>
-                <strong>預估體感：</strong>白天溫和、早晚偏涼<br>
-                <strong>建議區間：</strong>約 10–23°C<br>
-                <strong>晴雨趨勢：</strong>多雲到陰天為主，偶有短暫降雨可能<br>
-                <strong>穿搭建議：</strong>薄外套、長袖、輕便防風層
-            </p>
-            <p style="margin-top:10px;">
-                <a href="https://www.weather.com.cn/weather40d/101290101.shtml" target="_blank" rel="noopener noreferrer">中國天氣網｜昆明 40 天預報</a><br>
-                <a href="https://www.tianqi.com/kunming/30/" target="_blank" rel="noopener noreferrer">天氣網｜昆明 30 天預報</a>
-            </p>
-        </div>
+            <div class="tips">
+                <div class="tip-card">
+                    <h4>昆明</h4>
+                    <p>
+                        <strong>預估體感：</strong>白天溫和、早晚偏涼<br>
+                        <strong>建議區間：</strong>約 10–23°C<br>
+                        <strong>晴雨趨勢：</strong>多雲到陰天為主，偶有短暫降雨可能<br>
+                        <strong>穿搭建議：</strong>薄外套、長袖、輕便防風層
+                    </p>
+                    <p style="margin-top:10px;">
+                        <a href="https://www.weather.com.cn/weather40d/101290101.shtml" target="_blank" rel="noopener noreferrer">中國天氣網｜昆明 40 天預報</a><br>
+                        <a href="https://www.tianqi.com/kunming/30/" target="_blank" rel="noopener noreferrer">天氣網｜昆明 30 天預報</a>
+                    </p>
+                </div>
 
-        <div class="tip-card">
-            <h4>大理</h4>
-            <p>
-                <strong>目前較明確的逐日預估：</strong><br>
-                03/29：多雲 9–25°C<br>
-                03/30：多雲 9–25°C<br>
-                03/31：多雲 9–25°C<br>
-                04/01：多雲 10–25°C<br>
-                04/02：多雲 9–24°C<br>
-                04/03：多雲 10–25°C<br>
-                04/04：多雲 10–25°C<br>
-                04/05：多雲 10–25°C
-            </p>
-            <p style="margin-top:10px;">
-                <a href="https://www.tianqi.com/dali1/30/" target="_blank" rel="noopener noreferrer">天氣網｜大理 30 天預報</a><br>
-                <a href="https://www.weather.com.cn/weather40d/101290201.shtml" target="_blank" rel="noopener noreferrer">中國天氣網｜大理 40 天預報</a>
-            </p>
-        </div>
+                <div class="tip-card">
+                    <h4>大理</h4>
+                    <p>
+                        <strong>目前較明確的逐日預估：</strong><br>
+                        03/29：多雲 9–25°C<br>
+                        03/30：多雲 9–25°C<br>
+                        03/31：多雲 9–25°C<br>
+                        04/01：多雲 10–25°C<br>
+                        04/02：多雲 9–24°C<br>
+                        04/03：多雲 10–25°C<br>
+                        04/04：多雲 10–25°C<br>
+                        04/05：多雲 10–25°C
+                    </p>
+                    <p style="margin-top:10px;">
+                        <a href="https://www.tianqi.com/dali1/30/" target="_blank" rel="noopener noreferrer">天氣網｜大理 30 天預報</a><br>
+                        <a href="https://www.weather.com.cn/weather40d/101290201.shtml" target="_blank" rel="noopener noreferrer">中國天氣網｜大理 40 天預報</a>
+                    </p>
+                </div>
 
-        <div class="tip-card">
-            <h4>麗江</h4>
-            <p>
-                <strong>預估體感：</strong>白天舒服，清晨與夜晚較冷<br>
-                <strong>建議區間：</strong>約 6–22°C<br>
-                <strong>晴雨趨勢：</strong>多雲為主，局部時段可能有短暫小雨<br>
-                <strong>穿搭建議：</strong>保暖外套、長褲、防曬用品、太陽眼鏡
-            </p>
-            <p style="margin-top:10px;">
-                <a href="https://www.weather.com.cn/weather40d/101291401.shtml" target="_blank" rel="noopener noreferrer">中國天氣網｜麗江 40 天預報</a><br>
-                <a href="https://www.tianqi.com/lijiang/" target="_blank" rel="noopener noreferrer">天氣網｜麗江天氣頁</a><br>
-                <a href="https://www.tianqi.com/lijiang/30/" target="_blank" rel="noopener noreferrer">天氣網｜麗江 30 天預報</a>
-            </p>
-        </div>
+                <div class="tip-card">
+                    <h4>麗江</h4>
+                    <p>
+                        <strong>預估體感：</strong>白天舒服，清晨與夜晚較冷<br>
+                        <strong>建議區間：</strong>約 6–22°C<br>
+                        <strong>晴雨趨勢：</strong>多雲為主，局部時段可能有短暫小雨<br>
+                        <strong>穿搭建議：</strong>保暖外套、長褲、防曬用品、太陽眼鏡
+                    </p>
+                    <p style="margin-top:10px;">
+                        <a href="https://www.weather.com.cn/weather40d/101291401.shtml" target="_blank" rel="noopener noreferrer">中國天氣網｜麗江 40 天預報</a><br>
+                        <a href="https://www.tianqi.com/lijiang/" target="_blank" rel="noopener noreferrer">天氣網｜麗江天氣頁</a><br>
+                        <a href="https://www.tianqi.com/lijiang/30/" target="_blank" rel="noopener noreferrer">天氣網｜麗江 30 天預報</a>
+                    </p>
+                </div>
 
-        <div class="tip-card">
-            <h4>香格里拉</h4>
-            <p>
-                <strong>預估體感：</strong>四地之中最冷，早晚寒意明顯<br>
-                <strong>建議區間：</strong>約 -2–14°C<br>
-                <strong>晴雨趨勢：</strong>多雲到晴為主，局部可能有短暫降水；高海拔地區體感更低<br>
-                <strong>穿搭建議：</strong>厚外套、防風層、保暖帽子或圍巾
-            </p>
-            <p style="margin-top:10px;">
-                <a href="https://www.weather.com.cn/weather40d/101291301.shtml" target="_blank" rel="noopener noreferrer">中國天氣網｜香格里拉 40 天預報</a><br>
-                <a href="https://www.tianqi.com/xianggelila/" target="_blank" rel="noopener noreferrer">天氣網｜香格里拉天氣頁</a><br>
-                <a href="https://www.tianqi.com/xianggelila/30/" target="_blank" rel="noopener noreferrer">天氣網｜香格里拉 30 天預報</a>
-            </p>
-        </div>
-    </div>
+                <div class="tip-card">
+                    <h4>香格里拉</h4>
+                    <p>
+                        <strong>預估體感：</strong>四地之中最冷，早晚寒意明顯<br>
+                        <strong>建議區間：</strong>約 -2–14°C<br>
+                        <strong>晴雨趨勢：</strong>多雲到晴為主，局部可能有短暫降水；高海拔地區體感更低<br>
+                        <strong>穿搭建議：</strong>厚外套、防風層、保暖帽子或圍巾
+                    </p>
+                    <p style="margin-top:10px;">
+                        <a href="https://www.weather.com.cn/weather40d/101291301.shtml" target="_blank" rel="noopener noreferrer">中國天氣網｜香格里拉 40 天預報</a><br>
+                        <a href="https://www.tianqi.com/xianggelila/" target="_blank" rel="noopener noreferrer">天氣網｜香格里拉天氣頁</a><br>
+                        <a href="https://www.tianqi.com/xianggelila/30/" target="_blank" rel="noopener noreferrer">天氣網｜香格里拉 30 天預報</a>
+                    </p>
+                </div>
+            </div>
 
-    <div class="highlight-box" style="margin-top:16px;">
-        <ul class="highlight-list">
-            <li><strong>最舒服拍照區：</strong>大理、昆明白天通常最舒適，但洱海邊風感較強。</li>
-            <li><strong>最需要保暖區：</strong>香格里拉早晚與高海拔區域最冷，請不要只看白天高溫。</li>
-            <li><strong>最需要防曬區：</strong>麗江雪山行程與香格里拉高原區，紫外線通常偏強。</li>
-        </ul>
-    </div>
-</section>
+            <div class="highlight-box" style="margin-top:16px;">
+                <ul class="highlight-list">
+                    <li><strong>最舒服拍照區：</strong>大理、昆明白天通常最舒適，但洱海邊風感較強。</li>
+                    <li><strong>最需要保暖區：</strong>香格里拉早晚與高海拔區域最冷，請不要只看白天高溫。</li>
+                    <li><strong>最需要防曬區：</strong>麗江雪山行程與香格里拉高原區，紫外線通常偏強。</li>
+                    <li><strong>更新建議：</strong>出發前 3–5 天，再把這一段改成短期預報版本會更準。</li>
+                </ul>
+            </div>
+        </section>
 
         <section class="section">
             <h2 class="section-title"><i class="fa-solid fa-map"></i> 行程地圖導航</h2>
@@ -1119,7 +1383,7 @@
         <section class="section">
             <h2 class="section-title"><i class="fa-solid fa-image"></i> 圖片來源說明</h2>
             <p style="margin-top:0; color:#475569;">
-                本頁旅遊圖片原始來源主要為 Wikimedia Commons。
+                本頁旅遊圖片已建議下載至本站 <code>images/</code> 目錄後引用，以降低外部連結變動風險。原始來源主要為 Wikimedia Commons。
             </p>
             <ul class="source-list">
                 <li><strong>hero-songzanlin.jpg</strong>：Wikimedia Commons / 松讚林寺空拍</li>
@@ -1140,6 +1404,28 @@
         <b>祝大家有一段愉快且難忘的雲南之旅！</b>
         <p>Explore Yunnan with Xiang-Bo-Bo © 2026</p>
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const tabButtons = document.querySelectorAll('.day-tab-btn');
+            const dayPanels = document.querySelectorAll('.day-panel');
+
+            tabButtons.forEach(btn => {
+                btn.addEventListener('click', function () {
+                    const target = this.getAttribute('data-day');
+
+                    tabButtons.forEach(b => b.classList.remove('active'));
+                    dayPanels.forEach(panel => panel.classList.remove('active'));
+
+                    this.classList.add('active');
+                    const targetPanel = document.getElementById(target);
+                    if (targetPanel) {
+                        targetPanel.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
 
 </body>
 </html>
