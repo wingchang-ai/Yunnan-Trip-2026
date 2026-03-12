@@ -4,165 +4,343 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>香波波-雲南：昆明．大理．麗江．香格里拉 8 日之旅</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        body { font-family: "Microsoft JhengHei", sans-serif; line-height: 1.6; color: #333; max-width: 900px; margin: 0 auto; padding: 20px; background-color: #f4f7f6; }
-        h1 { color: #2c3e50; text-align: center; border-bottom: 2px solid #2c3e50; padding-bottom: 10px; }
-        h2 { color: #e67e22; border-left: 5px solid #e67e22; padding-left: 10px; margin-top: 30px; }
-        h3 { color: #2980b9; }
-        .info-box { background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom: 20px; }
-        table { width: 100%; border-collapse: collapse; margin: 20px 0; background: #fff; }
-        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
-        th { background-color: #2c3e50; color: white; }
-        .tips { background-color: #e8f4fd; border-left: 5px solid #3498db; padding: 15px; margin: 20px 0; }
-        .footer { text-align: center; font-size: 1.1em; font-weight: bold; color: #2c3e50; margin-top: 50px; padding: 20px; border-top: 1px solid #ddd; }
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #e67e22;
+            --accent-color: #3498db;
+            --bg-color: #f8f9fa;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: "PingFang TC", "Heiti TC", "Microsoft JhengHei", sans-serif;
+            line-height: 1.8;
+            color: #444;
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Hero Banner */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
+                        url('https://images.unsplash.com/photo-1523731407965-2430cd12f5e4?auto=format&fit=crop&w=1500&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+        }
+
+        .hero h1 { font-size: 2.5rem; margin-bottom: 10px; text-align: center; }
+        .hero p { font-size: 1.2rem; background: rgba(230, 126, 34, 0.8); padding: 5px 20px; border-radius: 20px; }
+
+        .container { max-width: 1000px; margin: -50px auto 50px; padding: 0 20px; }
+
+        /* Section Styles */
+        section {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+
+        h2 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Flight Table */
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 0.95rem; }
+        th { background: #f2f2f2; color: var(--primary-color); padding: 15px; text-align: left; }
+        td { padding: 15px; border-bottom: 1px solid #eee; }
+        .flight-tag { background: #34495e; color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; }
+
+        /* Itinerary Timeline */
+        .day-card {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .day-card::before {
+            content: "";
+            position: absolute;
+            left: 25px;
+            top: 60px;
+            bottom: -20px;
+            width: 2px;
+            background: #eee;
+        }
+
+        .day-card:last-child::before { display: none; }
+
+        .day-num {
+            background: var(--secondary-color);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            flex-shrink: 0;
+            z-index: 1;
+            font-weight: bold;
+            font-size: 0.8rem;
+        }
+
+        .day-content { flex-grow: 1; }
+        .day-content h3 { margin-top: 0; color: var(--accent-color); font-size: 1.3rem; }
+        
+        .img-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 15px 0;
+        }
+
+        .img-grid img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+
+        .img-grid img:hover { transform: scale(1.05); }
+
+        /* Food & Tips */
+        .food-item {
+            display: inline-block;
+            background: #fff5eb;
+            color: #d35400;
+            padding: 5px 15px;
+            border-radius: 20px;
+            margin: 5px;
+            font-weight: 500;
+        }
+
+        .tips-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .tips-list li {
+            padding: 10px 0;
+            border-bottom: 1px dashed #eee;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .tips-list i { color: var(--secondary-color); }
+
+        .footer {
+            text-align: center;
+            padding: 40px;
+            background: var(--primary-color);
+            color: white;
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+        }
+
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 1.8rem; }
+            .day-card { flex-direction: column; }
+            .day-card::before { display: none; }
+            table { font-size: 0.8rem; display: block; overflow-x: auto; }
+        }
     </style>
 </head>
 <body>
 
-    <h1>🏔️ 香波波-雲南：昆明．大理．麗江．香格里拉 8 日之旅</h1>
-    <p style="text-align: center;"><strong>日期：2026年3月29日 — 4月5日 | 團員人數：9位</strong></p>
+    <header class="hero">
+        <h1>🏔️ 香波波-雲南：昆明．大理．麗江．香格里拉</h1>
+        <p>2026.03.29 — 04.05 | 私人定制 9 人團</p>
+    </header>
 
-    <div class="info-box">
-        <h2>✈️ 航班資訊 (中國東方航空)</h2>
-        <table>
-            <tr>
-                <th>航段</th>
-                <th>日期</th>
-                <th>航班</th>
-                <th>出發地 / 時間</th>
-                <th>目的地 / 時間</th>
-                <th>備註</th>
-            </tr>
-            <tr>
-                <td><strong>去程</strong></td>
-                <td>3/29</td>
-                <td>MU5006</td>
-                <td>台北(TPE) 15:30</td>
-                <td>上海(PVG) 17:30</td>
-                <td>二航廈-飛2Hr</td>
-            </tr>
-            <tr>
-                <td><strong>轉機</strong></td>
-                <td>3/29</td>
-                <td>MU5812</td>
-                <td>上海(PVG) 19:10</td>
-                <td>昆明(KMG) 23:00</td>
-                <td>(等1h40m)飛3H50m</td>
-            </tr>
-            <tr>
-                <td><strong>回程</strong></td>
-                <td>4/5</td>
-                <td>MU5803</td>
-                <td>昆明(KMG) 09:30</td>
-                <td>上海(PVG) 12:45</td>
-                <td>一航廈-飛3H15m</td>
-            </tr>
-            <tr>
-                <td><strong>轉機</strong></td>
-                <td>4/5</td>
-                <td>MU5005</td>
-                <td>上海(PVG) 15:50</td>
-                <td>台北(TPE) 17:40</td>
-                <td>(等3h5m)飛1H15m</td>
-            </tr>
-        </table>
-    </div>
+    <div class="container">
+        
+        <section id="flights">
+            <h2><i class="fa-solid fa-plane"></i> 航班資訊</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>航段</th>
+                        <th>日期</th>
+                        <th>航班</th>
+                        <th>出發/目的地</th>
+                        <th>時間</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="flight-tag">去程</span></td>
+                        <td>03/29</td>
+                        <td>MU5006</td>
+                        <td>台北 ➔ 上海</td>
+                        <td>15:30 - 17:30</td>
+                    </tr>
+                    <tr>
+                        <td><span class="flight-tag">轉機</span></td>
+                        <td>03/29</td>
+                        <td>MU5812</td>
+                        <td>上海 ➔ 昆明</td>
+                        <td>19:10 - 23:00</td>
+                    </tr>
+                    <tr>
+                        <td><span class="flight-tag">回程</span></td>
+                        <td>04/05</td>
+                        <td>MU5803</td>
+                        <td>昆明 ➔ 上海</td>
+                        <td>09:30 - 12:45</td>
+                    </tr>
+                    <tr>
+                        <td><span class="flight-tag">轉機</span></td>
+                        <td>04/05</td>
+                        <td>MU5005</td>
+                        <td>上海 ➔ 台北</td>
+                        <td>15:50 - 17:40</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
 
-    <h2>🗓️ 每日詳細行程安排</h2>
+        <section id="itinerary">
+            <h2><i class="fa-solid fa-map-location-dot"></i> 行程亮點</h2>
 
-    <div class="info-box">
-        <h3>Day 1: 3月29日 (週日) 抵達春城</h3>
-        <ul>
-            <li>抵達昆明長水國際機場。</li>
-            <li>安排專車接機並送往酒店入住休息。</li>
-            <li><strong>住宿：</strong>昆明官渡華美達安可酒店 (4鑽)。</li>
-        </ul>
-    </div>
+            <div class="day-card">
+                <div class="day-num">DAY<span>01</span></div>
+                <div class="day-content">
+                    <h3>抵達春城 - 昆明</h3>
+                    <p>專車接機送往酒店入住，適應高原氣候。</p>
+                    <div class="img-grid">
+                        <img src="https://images.unsplash.com/photo-1543881261-750800b704c7?auto=format&fit=crop&w=400&q=80" alt="昆明夜景">
+                    </div>
+                    <p>🏨 住宿：昆明官渡華美達安可酒店 (4鑽)</p>
+                </div>
+            </div>
 
-    <div class="info-box">
-        <h3>Day 2: 3月30日 (週一) 昆明 － 大理：洱海風光</h3>
-        <ul>
-            <li>搭乘動車前往大理。</li>
-            <li>遊覽<strong>龍龕碼頭</strong>、<strong>雙廊古鎮</strong>（含南詔風情島遊船）。</li>
-            <li>造訪<strong>臥鹿山</strong>、<strong>文筆村</strong> 及<strong>聖托里尼（理想邦）</strong>。</li>
-            <li><strong>住宿：</strong>大理古曼酒店 (4鑽)。</li>
-        </ul>
-    </div>
+            <div class="day-card">
+                <div class="day-num">DAY<span>02</span></div>
+                <div class="day-content">
+                    <h3>大理洱海風光</h3>
+                    <p>搭乘動車前往大理。遊覽<strong>龍龕碼頭</strong>、<strong>雙廊古鎮</strong>、<strong>聖托里尼（理想邦）</strong>。</p>
+                    <div class="img-grid">
+                        <img src="https://images.unsplash.com/photo-1596434442659-45607374b5b7?auto=format&fit=crop&w=400&q=80" alt="大理洱海">
+                        <img src="https://images.unsplash.com/photo-1627894006066-b457954303ec?auto=format&fit=crop&w=400&q=80" alt="聖托里尼">
+                    </div>
+                    <p>🏨 住宿：大理古曼酒店 (4鑽)</p>
+                </div>
+            </div>
 
-    <div class="info-box">
-        <h3>Day 3: 3月31日 (週二) 大理：環海騎行與古城</h3>
-        <ul>
-            <li>前往海西<strong>馬久邑</strong>開啟環海 S 彎騎行。</li>
-            <li>漫步<strong>大理古城</strong>及<strong>洋人街</strong>。</li>
-            <li><strong>住宿：</strong>大理古曼酒店 (4鑽)。</li>
-        </ul>
-    </div>
+            <div class="day-card">
+                <div class="day-num">DAY<span>03</span></div>
+                <div class="day-content">
+                    <h3>環海騎行與大理古城</h3>
+                    <p><strong>馬久邑 S 彎</strong>環海騎行，慢遊大理古城洋人街。</p>
+                    <div class="img-grid">
+                        <img src="https://images.unsplash.com/photo-1512466699224-9d93c778923a?auto=format&fit=crop&w=400&q=80" alt="大理古城">
+                    </div>
+                    <p>🏨 住宿：大理古曼酒店 (4鑽)</p>
+                </div>
+            </div>
 
-    <div class="info-box">
-        <h3>Day 4: 4月1日 (週三) 麗江：古鎮尋幽</h3>
-        <ul>
-            <li>前往麗江。</li>
-            <li>遊覽<strong>束河古鎮</strong>、<strong>白沙古鎮</strong>。</li>
-            <li>造訪<strong>玉湖村</strong>（雪山第一村）。</li>
-            <li><strong>住宿：</strong>麗江隱廬秀園 (4鑽)。</li>
-        </ul>
-    </div>
+            <div class="day-card">
+                <div class="day-num">DAY<span>04</span></div>
+                <div class="day-content">
+                    <h3>麗江古鎮探幽</h3>
+                    <p>漫步<strong>束河古鎮</strong>、<strong>白沙古鎮</strong>，訪雪山第一村<strong>玉湖村</strong>。</p>
+                    <div class="img-grid">
+                        <img src="https://images.unsplash.com/photo-1527684651001-731c4746097d?auto=format&fit=crop&w=400&q=80" alt="麗江古城">
+                    </div>
+                    <p>🏨 住宿：麗江隱廬秀園 (4鑽)</p>
+                </div>
+            </div>
 
-    <div class="info-box">
-        <h3>Day 5: 4月2日 (週四) 麗江：玉龍雪山巔峰之旅</h3>
-        <ul>
-            <li>上午乘坐大索道直達<strong>冰川公園</strong>（海拔 4680 米觀景台）。</li>
-            <li>下午遊覽<strong>雲杉坪</strong>（小索道）與<strong>藍月谷</strong>。</li>
-            <li><strong>住宿：</strong>麗江隱廬秀園 (4鑽)。</li>
-        </ul>
-    </div>
+            <div class="day-card">
+                <div class="day-num">DAY<span>05</span></div>
+                <div class="day-content">
+                    <h3>玉龍雪山巔峰之旅</h3>
+                    <p><strong>冰川公園</strong>(海拔4680米觀景台)、<strong>雲杉坪</strong>、<strong>藍月谷</strong>。</p>
+                    <div class="img-grid">
+                        <img src="https://images.unsplash.com/photo-1582234033100-79be11f58025?auto=format&fit=crop&w=400&q=80" alt="玉龍雪山">
+                        <img src="https://images.unsplash.com/photo-1584346853755-90059f1396a8?auto=format&fit=crop&w=400&q=80" alt="藍月谷">
+                    </div>
+                    <p>🏨 住宿：麗江隱廬秀園 (4鑽)</p>
+                </div>
+            </div>
 
-    <div class="info-box">
-        <h3>Day 6: 4月3日 (週五) 麗江 － 香格里拉</h3>
-        <ul>
-            <li>經由<strong>虎跳峽</strong>（打卡長江第一灣）前往香格里拉。</li>
-            <li>遊覽<strong>普達措國家森林公園</strong>（屬都湖、碧塔海）。</li>
-            <li>傍晚漫步<strong>獨克宗古城</strong>並轉動大經筒。</li>
-            <li><strong>住宿：</strong>香格里拉頤庭酒店 (4鑽)。</li>
-        </ul>
-    </div>
+            <div class="day-card">
+                <div class="day-num">DAY<span>06</span></div>
+                <div class="day-content">
+                    <h3>香格里拉 - 消失的地平線</h3>
+                    <p>經<strong>虎跳峽</strong>前往。遊覽<strong>普達措國家公園</strong>、<strong>獨克宗古城</strong>。</p>
+                    <div class="img-grid">
+                        <img src="https://images.unsplash.com/photo-1508804185872-d7badad00f7d?auto=format&fit=crop&w=400&q=80" alt="香格里拉">
+                    </div>
+                    <p>🏨 住宿：香格里拉頤庭酒店 (4鑽)</p>
+                </div>
+            </div>
 
-    <div class="info-box">
-        <h3>Day 7: 4月4日 (週六) 香格里拉 － 昆明</h3>
-        <ul>
-            <li>上午參訪「小布達拉宮」<strong>松讚林寺</strong>。</li>
-            <li>下午遊覽<strong>依拉草原納帕海</strong>。</li>
-            <li>搭乘動車返回昆明入住酒店。</li>
-            <li><strong>住宿：</strong>昆明官渡華美達安可酒店 (4鑽)。</li>
-        </ul>
-    </div>
+            <div class="day-card">
+                <div class="day-num">DAY<span>07</span></div>
+                <div class="day-content">
+                    <h3>小布達拉宮 - 松讚林寺</h3>
+                    <p>參訪<strong>松讚林寺</strong>、<strong>依拉草原納帕海</strong>。傍晚搭動車回昆明。</p>
+                    <div class="img-grid">
+                        <img src="https://images.unsplash.com/photo-1523731407965-2430cd12f5e4?auto=format&fit=crop&w=400&q=80" alt="松讚林寺">
+                    </div>
+                    <p>🏨 住宿：昆明官渡華美達安可酒店 (4鑽)</p>
+                </div>
+            </div>
 
-    <div class="info-box">
-        <h3>Day 8: 4月5日 (週日) 昆明送機 － 溫暖的家</h3>
-        <ul>
-            <li>根據航班時間安排專車送機。</li>
-            <li>經上海轉機返回台北。</li>
-        </ul>
-    </div>
+            <div class="day-card">
+                <div class="day-num">DAY<span>08</span></div>
+                <div class="day-content">
+                    <h3>賦歸 - 期待再見</h3>
+                    <p>早餐後由專車送往機場，帶著滿滿回憶返回家園。</p>
+                </div>
+            </div>
 
-    <h2>🍜 推薦在地小吃 (非大型風味餐)</h2>
-    <div class="info-box">
-        <ul>
-            <li><strong>大理：</strong>再回首涼雞米線、喜洲粑粑、烤乳扇。</li>
-            <li><strong>麗江：</strong>白沙無名麵館（土雞米線）、雞豆涼粉。</li>
-            <li><strong>香格里拉：</strong>尼西土鍋雞、酥油茶、糌粑。</li>
-        </ul>
-    </div>
+        </section>
 
-    <h2>🧳 旅遊注意事項</h2>
-    <div class="tips">
-        <ul>
-            <li><strong>氣候：</strong>雲南地區晝夜溫差顯著，請準備充足保暖衣物與雨具。</li>
-            <li><strong>防護：</strong>高原紫外線強烈，必備帽子、太陽鏡及防曬霜。</li>
-            <li><strong>健康：</strong>高海拔地區注意休息以防高山反應，心臟病或高血壓患者請備妥常備藥。</li>
-            <li><strong>交通：</strong>山區公路限速嚴格，行程速度較慢請見諒。</li>
-            <li><strong>習俗：</strong>尊重當地少數民族的宗教及生活習俗。</li>
-        </ul>
+        <section id="food">
+            <h2><i class="fa-solid fa-utensils"></i> 舌尖上的雲南</h2>
+            <div style="margin-top: 15px;">
+                <span class="food-item">大理涼雞米線</span>
+                <span class="food-item">喜洲粑粑</span>
+                <span class="food-item">雲南烤乳扇</span>
+                <span class="food-item">土雞米線</span>
+                <span class="food-item">雞豆涼粉</span>
+                <span class="food-item">尼西土鍋雞</span>
+                <span class="food-item">酥油茶/糌粑</span>
+            </div>
+        </section>
+
+        <section id="tips">
+            <h2><i class="fa-solid fa-circle-exclamation"></i> 貼心小提醒</h2>
+            <ul class="tips-list">
+                <li><i class="fa-solid fa-thermometer-half"></i> 雲南晝夜溫差大(12-15°C)，請採洋蔥式穿法，必備防寒衣物。</li>
+                <li><i class="fa-solid fa-sun"></i> 高原紫外線極強，防曬乳、遮陽帽、太陽鏡為必需品。</li>
+                <li><i class="fa-solid fa-mountain"></i> 預防高原反應：抵達首日請勿劇烈運動，多喝水，可預備氧氣瓶。</li>
+                <li><i class="fa-solid fa-users"></i> 尊重少數民族宗教與生活習俗，參訪寺院請保持肅靜且穿著得體。</li>
+            </ul>
+        </section>
     </div>
 
     <div class="footer">
