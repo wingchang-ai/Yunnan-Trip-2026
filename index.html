@@ -7,130 +7,367 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         :root {
-            --ez-blue: #2980b9;
-            --ez-orange: #e67e22;
-            --ez-dark: #2c3e50;
-            --ez-bg: #fdfdfd;
-            --text-color: #444;
+            --primary-color: #2c3e50;
+            --secondary-color: #e67e22;
+            --accent-color: #3498db;
+            --bg-color: #f0f3f5;
+            --card-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            --transition: all 0.3s ease;
         }
 
         body { 
-            font-family: "Microsoft JhengHei", sans-serif; 
-            line-height: 1.8; 
-            color: var(--text-color); 
+            font-family: "PingFang TC", "Heiti TC", "Microsoft JhengHei", sans-serif; 
+            line-height: 1.6; 
+            color: #444; 
             margin: 0; 
-            background-color: var(--ez-bg);
+            background-color: var(--bg-color);
         }
 
-        /* 易遊網風格大橫幅 */
+        /* 頂部橫幅設計 */
         .hero-banner {
-            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
-                        url('https://images.unsplash.com/photo-1582234033100-79be11f58025?auto=format&fit=crop&w=1500&q=80');
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+                        url('https://images.unsplash.com/photo-1523731407965-2430cd12f5e4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
             background-size: cover;
             background-position: center;
-            height: 500px;
+            height: 450px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             color: white;
             text-align: center;
+            padding: 0 20px;
         }
 
-        .hero-banner h1 { font-size: 2.5rem; letter-spacing: 2px; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
-        .hero-banner .badge { background: var(--ez-orange); padding: 5px 20px; border-radius: 4px; font-size: 1rem; margin-top: 15px; }
+        .hero-banner h1 { font-size: 2.8rem; margin: 0; text-shadow: 2px 2px 8px rgba(0,0,0,0.6); }
+        .hero-banner p { font-size: 1.2rem; margin-top: 15px; background: rgba(230, 126, 34, 0.9); padding: 5px 25px; border-radius: 50px; }
 
-        .container { max-width: 1100px; margin: 0 auto; padding: 40px 20px; }
+        .container { max-width: 1000px; margin: -60px auto 50px; padding: 0 15px; }
 
+        /* 模組化區塊 */
         .section-card { 
             background: #fff; 
             padding: 30px; 
-            border-radius: 8px; 
-            box-shadow: 0 4px 20px rgba(0,0,0,0.05); 
-            margin-bottom: 40px; 
+            border-radius: 12px; 
+            box-shadow: var(--card-shadow); 
+            margin-bottom: 30px; 
+            border-top: 5px solid var(--primary-color);
         }
 
         h2 { 
-            font-size: 1.8rem; 
-            color: var(--ez-dark); 
-            border-left: 6px solid var(--ez-orange); 
-            padding-left: 15px; 
-            margin-bottom: 25px;
+            color: var(--primary-color); 
+            display: flex; 
+            align-items: center; 
+            font-size: 1.6rem; 
+            margin-top: 0;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 15px;
         }
+        h2 i { margin-right: 12px; color: var(--secondary-color); }
 
-        /* 行程圖組配置 - 模擬參考網頁的多圖展示 */
-        .photo-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            grid-template-rows: 200px 200px;
-            gap: 10px;
-            margin: 20px 0;
+        /* 表格優化 */
+        .table-container { overflow-x: auto; }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; min-width: 600px; }
+        th { background-color: #f8f9fa; color: var(--primary-color); font-weight: 600; }
+        th, td { padding: 15px; text-align: left; border-bottom: 1px solid #eee; }
+        .flight-badge { background: #34495e; color: white; padding: 3px 10px; border-radius: 4px; font-size: 0.85rem; }
+
+        /* 行程卡片設計 */
+        .itinerary-day {
+            display: flex;
+            margin-bottom: 30px;
+            gap: 20px;
         }
-        .photo-grid img { width: 100%; height: 100%; object-fit: cover; border-radius: 4px; }
-        .photo-main { grid-row: span 2; }
-
-        .day-title { color: var(--ez-blue); font-size: 1.3rem; font-weight: bold; border-bottom: 1px solid #eee; padding-bottom: 10px; margin-top: 40px; }
+        .day-label {
+            min-width: 70px;
+            height: 70px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+        }
+        .day-label span { font-size: 1.4rem; }
         
-        .flight-info { background: #f8f9fa; padding: 20px; border-radius: 4px; border-top: 3px solid var(--ez-blue); }
+        .day-content {
+            flex-grow: 1;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #eee;
+            transition: var(--transition);
+        }
+        .day-content:hover { border-color: var(--secondary-color); box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        .day-content h3 { margin: 0 0 10px 0; color: var(--accent-color); }
+        
+        .day-img-box {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+            margin: 15px 0;
+        }
+        .day-img-box img { 
+            width: 100%; 
+            height: 160px; 
+            object-fit: cover; 
+            border-radius: 8px; 
+            background: #eee;
+        }
 
-        .food-tag { display: inline-block; border: 1px solid var(--ez-orange); color: var(--ez-orange); padding: 2px 12px; border-radius: 20px; font-size: 0.9rem; margin: 5px; }
+        /* 標籤設計 */
+        .food-tag {
+            display: inline-block;
+            background: #fff5eb;
+            color: #d35400;
+            padding: 5px 15px;
+            border-radius: 20px;
+            margin: 5px;
+            font-weight: 500;
+            border: 1px solid #ffe0c1;
+        }
 
+        .tips-box {
+            background-color: #e8f4fd;
+            border-left: 5px solid var(--accent-color);
+            padding: 20px;
+            border-radius: 0 8px 8px 0;
+        }
+        .tips-box li { margin-bottom: 10px; }
+
+        .footer { 
+            text-align: center; 
+            padding: 50px 20px; 
+            background-color: var(--primary-color); 
+            color: #bdc3c7;
+        }
+        .footer b { color: #fff; font-size: 1.3rem; display: block; margin-bottom: 10px; }
+
+        /* RWD 響應式 */
         @media (max-width: 768px) {
-            .photo-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
-            .photo-main { grid-row: auto; height: 250px; }
+            .hero-banner h1 { font-size: 1.8rem; }
+            .itinerary-day { flex-direction: column; }
+            .day-label { width: 100%; height: auto; padding: 10px 0; flex-direction: row; gap: 10px; }
+            .day-img-box { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
     <header class="hero-banner">
-        <h1>相遇雲南．去有風的地方</h1>
-        <div class="badge">9 位成員私人定制・奢享五星 8 日</div>
-        <p style="margin-top:20px;">2026.03.29 — 04.05 | 昆明．大理．麗江．香格里拉</p>
+        <h1>🏔️ 香波波-雲南之旅</h1>
+        <p>昆明．大理．麗江．香格里拉 8 日全覽</p>
+        <div style="margin-top: 10px;"><i class="fa-solid fa-calendar-day"></i> 2026.03.29 — 04.05 | <i class="fa-solid fa-user-group"></i> 9 位成員</div>
     </header>
 
     <div class="container">
         <div class="section-card">
-            <h2><i class="fa-solid fa-plane"></i> 參考航班資訊</h2>
-            <div class="flight-info">
-                <p><strong>去程：</strong> 3/29 MU5006 台北 15:30 ➔ 上海 17:30 (轉) MU5812 上海 19:10 ➔ 昆明 23:00</p>
-                <p><strong>回程：</strong> 4/05 MU5803 昆明 09:30 ➔ 上海 12:45 (轉) MU5005 上海 15:50 ➔ 台北 17:40</p>
+            <h2><i class="fa-solid fa-plane-departure"></i> 航班資訊 (中國東方航空)</h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>狀態</th>
+                            <th>日期</th>
+                            <th>航班</th>
+                            <th>起飛 ➔ 抵達</th>
+                            <th>時間</th>
+                            <th>飛行/轉機</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="flight-badge">去程</span></td>
+                            <td>3/29</td>
+                            <td>MU5006</td>
+                            <td>台北(TPE) ➔ 上海(PVG)</td>
+                            <td>15:30 - 17:30</td>
+                            <td>2h 00m</td>
+                        </tr>
+                        <tr>
+                            <td><span class="flight-badge" style="background:#8e44ad;">轉機</span></td>
+                            <td>3/29</td>
+                            <td>MU5812</td>
+                            <td>上海(PVG) ➔ 昆明(KMG)</td>
+                            <td>19:10 - 23:00</td>
+                            <td>待機 1h40m / 飛 3h50m</td>
+                        </tr>
+                        <tr>
+                            <td><span class="flight-badge">回程</span></td>
+                            <td>4/5</td>
+                            <td>MU5803</td>
+                            <td>昆明(KMG) ➔ 上海(PVG)</td>
+                            <td>09:30 - 12:45</td>
+                            <td>3h 15m</td>
+                        </tr>
+                        <tr>
+                            <td><span class="flight-badge" style="background:#8e44ad;">轉機</span></td>
+                            <td>4/5</td>
+                            <td>MU5005</td>
+                            <td>上海(PVG) ➔ 台北(TPE)</td>
+                            <td>15:50 - 17:40</td>
+                            <td>待機 3h05m / 飛 1h15m</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
 
         <div class="section-card">
-            <h2><i class="fa-solid fa-star"></i> 行程精選亮點</h2>
-            <div class="photo-grid">
-                <img src="https://images.unsplash.com/photo-1596434442659-45607374b5b7?auto=format&fit=crop&w=800&q=80" class="photo-main" alt="洱海聖托里尼">
-                <img src="https://images.unsplash.com/photo-1584346853755-90059f1396a8?auto=format&fit=crop&w=400&q=80" alt="藍月谷">
-                <img src="https://images.unsplash.com/photo-1523731407965-2430cd12f5e4?auto=format&fit=crop&w=400&q=80" alt="松讚林寺">
+            <h2><i class="fa-solid fa-map-location-dot"></i> 每日詳細行程安排</h2>
+
+            <div class="itinerary-day">
+                <div class="day-label">DAY<span>01</span></div>
+                <div class="day-content">
+                    <h3>抵達春城 - 昆明</h3>
+                    <ul>
+                        <li>抵達昆明長水國際機場，展開雲南奇幻之旅。</li>
+                        <li>安排專車接機並送往酒店入住休息，適應高原氣候。</li>
+                    </ul>
+                    <div class="day-img-box">
+                        <img src="https://images.unsplash.com/photo-1543881261-750800b704c7?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="昆明夜景">
+                    </div>
+                    <p>🏨 <strong>住宿：</strong>昆明官渡華美達安可酒店 (4鑽)</p>
+                </div>
             </div>
-            <p>融合《去有風的地方》劇中場景：鳳陽邑、喜洲古鎮，深度體驗雲南慢生活。</p>
+
+            <div class="itinerary-day">
+                <div class="day-label">DAY<span>02</span></div>
+                <div class="day-content">
+                    <h3>昆明 ➔ 大理：蒼山洱海風光</h3>
+                    <ul>
+                        <li>搭乘動車前往大理，體驗高速穿梭雲嶺之美。</li>
+                        <li>遊覽 <strong>龍龕碼頭</strong>、<strong>雙廊古鎮</strong>（含南詔風情島遊船）。</li>
+                        <li>網紅打卡：<strong>臥鹿山</strong>、<strong>文筆村</strong> 及 <strong>聖托里尼 (理想邦)</strong>。</li>
+                    </ul>
+                    <div class="day-img-box">
+                        <img src="https://images.unsplash.com/photo-1596434442659-45607374b5b7?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="大理洱海">
+                        <img src="https://images.unsplash.com/photo-1627894006066-b457954303ec?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="大理聖托里尼">
+                    </div>
+                    <p>🏨 <strong>住宿：</strong>大理古曼酒店 (4鑽)</p>
+                </div>
+            </div>
+
+            <div class="itinerary-day">
+                <div class="day-label">DAY<span>03</span></div>
+                <div class="day-content">
+                    <h3>大理：海西騎行與古城慢時光</h3>
+                    <ul>
+                        <li>前往海西 <strong>馬久邑</strong> 享受環海 S 彎騎行，感受微風拂面。</li>
+                        <li>漫步 <strong>大理古城</strong> 及文青集散地 <strong>洋人街</strong>。</li>
+                    </ul>
+                    <p>🏨 <strong>住宿：</strong>大理古曼酒店 (4鑽)</p>
+                </div>
+            </div>
+
+            <div class="itinerary-day">
+                <div class="day-label">DAY<span>04</span></div>
+                <div class="day-content">
+                    <h3>大理 ➔ 麗江：漫步遺世古鎮</h3>
+                    <ul>
+                        <li>前往麗江，尋訪 <strong>束河古鎮</strong> 與最具原始氣息的 <strong>白沙古鎮</strong>。</li>
+                        <li>特別安排：<strong>玉湖村</strong> (雪山第一村)，近距離眺望玉龍雪山。</li>
+                    </ul>
+                    <div class="day-img-box">
+                        <img src="https://images.unsplash.com/photo-1527684651001-731c4746097d?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="麗江古鎮">
+                    </div>
+                    <p>🏨 <strong>住宿：</strong>麗江隱廬秀園 (4鑽)</p>
+                </div>
+            </div>
+
+            <div class="itinerary-day">
+                <div class="day-label">DAY<span>05</span></div>
+                <div class="day-content">
+                    <h3>麗江：玉龍雪山聖潔巔峰</h3>
+                    <ul>
+                        <li>直上雲端：乘坐大索道直達 <strong>冰川公園</strong> (海拔 4680 米)。</li>
+                        <li>高山草甸：搭乘小索道遊覽 <strong>雲杉坪</strong> 與夢幻 <strong>藍月谷</strong>。</li>
+                    </ul>
+                    <div class="day-img-box">
+                        <img src="https://images.unsplash.com/photo-1582234033100-79be11f58025?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="玉龍雪山">
+                    </div>
+                    <p>🏨 <strong>住宿：</strong>麗江隱廬秀園 (4鑽)</p>
+                </div>
+            </div>
+
+            <div class="itinerary-day">
+                <div class="day-label">DAY<span>06</span></div>
+                <div class="day-content">
+                    <h3>麗江 ➔ 香格里拉：心中的日月</h3>
+                    <ul>
+                        <li>路經 <strong>虎跳峽</strong> (打卡長江第一灣)，感受震撼咆哮。</li>
+                        <li><strong>普達措國家森林公園</strong>：漫步碧塔海、屬都湖畔。</li>
+                        <li>深夜祈福：漫步 <strong>獨克宗古城</strong> 並合力轉動巨大轉經筒。</li>
+                    </ul>
+                    <div class="day-img-box">
+                        <img src="https://images.unsplash.com/photo-1508804185872-d7badad00f7d?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="香格里拉">
+                    </div>
+                    <p>🏨 <strong>住宿：</strong>香格里拉頤庭酒店 (4鑽)</p>
+                </div>
+            </div>
+
+            <div class="itinerary-day">
+                <div class="day-label">DAY<span>07</span></div>
+                <div class="day-content">
+                    <h3>香格里拉 ➔ 昆明：小布達拉宮</h3>
+                    <ul>
+                        <li>參訪 <strong>松讚林寺</strong>，領略壯麗的藏傳佛教建築藝術。</li>
+                        <li>遊覽 <strong>依拉草原納帕海</strong>，感受草原壯闊。</li>
+                        <li>傍晚搭乘動車返回昆明酒店。</li>
+                    </ul>
+                    <div class="day-img-box">
+                        <img src="https://images.unsplash.com/photo-1523731407965-2430cd12f5e4?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="松讚林寺">
+                    </div>
+                    <p>🏨 <strong>住宿：</strong>昆明官渡華美達安可酒店 (4鑽)</p>
+                </div>
+            </div>
+
+            <div class="itinerary-day">
+                <div class="day-label">DAY<span>08</span></div>
+                <div class="day-content">
+                    <h3>昆明送機 － 溫暖的家</h3>
+                    <ul>
+                        <li>根據航班時間安排專車前往長水機場。</li>
+                        <li>經上海轉機，帶著滿滿的回憶返回台北。</li>
+                    </ul>
+                </div>
+            </div>
         </div>
 
         <div class="section-card">
-            <h2><i class="fa-solid fa-calendar-days"></i> 參考行程說明</h2>
-            
-            <div class="day-title">Day 02 | 昆明 ➔ 大理：蒼山洱海浪漫行</div>
-            <p>搭乘動車前往大理，造訪網紅打卡點「聖托里尼 (理想邦)」，在海邊享受海景下午茶。</p>
-
-            <div class="day-title">Day 05 | 麗江：最美玉龍雪山與藍月谷</div>
-            <p>直上冰川公園海拔 4680 米，隨後遊覽仙氣十足的藍月谷，感受大自然的鬼斧神工。</p>
+            <h2><i class="fa-solid fa-bowl-food"></i> 推薦在地小吃 (不容錯過)</h2>
+            <div style="padding-top: 10px;">
+                <span class="food-tag">大理：再回首涼雞米線</span>
+                <span class="food-tag">大理：喜洲粑粑</span>
+                <span class="food-tag">大理：烤乳扇</span>
+                <span class="food-tag">麗江：白沙無名麵館 (土雞米線)</span>
+                <span class="food-tag">麗江：雞豆涼粉</span>
+                <span class="food-tag">香格里拉：尼西土鍋雞</span>
+                <span class="food-tag">香格里拉：酥油茶</span>
+                <span class="food-tag">香格里拉：糌粑</span>
+            </div>
         </div>
 
         <div class="section-card">
-            <h2><i class="fa-solid fa-utensils"></i> 在地必吃推薦</h2>
-            <span class="food-tag">再回首涼雞米線</span>
-            <span class="food-tag">喜洲粑粑</span>
-            <span class="food-tag">大理烤乳扇</span>
-            <span class="food-tag">尼西土鍋雞</span>
-            <span class="food-tag">麗江臘排骨</span>
+            <h2><i class="fa-solid fa-circle-exclamation"></i> 旅遊注意事項</h2>
+            <div class="tips-box">
+                <ul style="padding-left: 20px; margin: 0;">
+                    <li><strong>氣候：</strong>雲南地區「早晚如冬，中午如夏」，請務必準備防風外套與保暖層。</li>
+                    <li><strong>防護：</strong>高原紫外線是平地的 3 倍，請備妥墨鏡、帽子與高係數防曬乳。</li>
+                    <li><strong>健康：</strong>香格里拉平均海拔超過 3000M，建議前兩晚不洗頭、不飲酒，預防高山反應。</li>
+                    <li><strong>交通：</strong>山區公路速限嚴格，請放鬆心情享受窗外風景。</li>
+                    <li><strong>習俗：</strong>參觀寺院請勿穿著短裙短褲，且禁止觸摸佛像或隨意攝影。</li>
+                </ul>
+            </div>
         </div>
     </div>
 
-    <footer style="background: var(--ez-dark); color: #fff; text-align: center; padding: 40px;">
-        <p>Explore Yunnan with Xiang-Bo-Bo © 2026</p>
-    </footer>
+    <div class="footer">
+        <b>祝大家有一段愉快且難忘的雲南之旅！</b>
+        Explore Yunnan with Xiang-Bo-Bo © 2026
+    </div>
 
 </body>
 </html>
