@@ -657,20 +657,40 @@
 function sharePage() {
   const url = window.location.href;
 
-  if (navigator.share) {
+  // 更嚴謹判斷（重點）
+  if (navigator.share && navigator.canShare) {
     navigator.share({
       title: document.title,
       text: "雲南八日詩意之旅 ✨",
       url: url
+    }).catch(() => {
+      fallbackCopy(url);
     });
   } else {
-    navigator.clipboard.writeText(url)
-      .then(() => {
-        alert("已複製連結，可以貼給朋友 ✨");
-      })
-      .catch(() => {
-        alert("複製失敗，請手動複製網址");
-      });
+    fallbackCopy(url);
   }
+}
+
+// 備用：複製連結
+function fallbackCopy(url) {
+  navigator.clipboard.writeText(url)
+    .then(() => {
+      showToast("已複製連結 ✨");
+    })
+    .catch(() => {
+      alert("請手動複製網址列 🙏");
+    });
+}
+
+// Toast UI（比 alert 好看）
+function showToast(text) {
+  const toast = document.createElement("div");
+  toast.innerText = text;
+  toast.className = "fixed bottom-10 left-1/2 -translate-x-1/2 bg-black text-white px-6 py-3 rounded-full shadow-lg z-50";
+  document.body.appendChild(toast);
+
+  setTimeout(() => {
+    toast.remove();
+  }, 2000);
 }
 </script></body></html>
