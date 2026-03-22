@@ -80,9 +80,7 @@
   </script>
 
   <style>
-    html {
-      scroll-behavior: smooth;
-    }
+    html { scroll-behavior: smooth; }
 
     body {
       font-family: "Manrope", sans-serif;
@@ -92,9 +90,7 @@
       line-height: 1.7;
     }
 
-    .serif-title {
-      font-family: "Noto Serif TC", serif;
-    }
+    .serif-title { font-family: "Noto Serif TC", serif; }
 
     .material-symbols-outlined {
       font-variation-settings: "FILL" 0, "wght" 300, "GRAD" 0, "opsz" 24;
@@ -111,37 +107,28 @@
       pointer-events: none;
     }
 
-    .no-scrollbar::-webkit-scrollbar {
-      display: none;
-    }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-    .no-scrollbar {
-      -ms-overflow-style: none;
-      scrollbar-width: none;
-    }
+    img { max-width: 100%; height: auto; }
 
-    img {
-      max-width: 100%;
-      height: auto;
+    .weather-card-mobile {
+      display: block;
     }
 
     @media (min-width: 768px) {
-      body {
-        font-size: 18px;
-      }
+      body { font-size: 18px; }
+      .weather-card-mobile { display: none; }
     }
 
     @media (min-width: 1280px) {
-      body {
-        font-size: 20px;
-      }
+      body { font-size: 20px; }
     }
   </style>
 </head>
 
 <body class="bg-surface selection:bg-on-tertiary-container/30">
 
-  <!-- TopNavBar -->
   <header class="fixed top-0 w-full z-50 bg-white/90 backdrop-blur-xl shadow-[0px_12px_30px_rgba(31,58,95,0.08)]">
     <nav class="flex justify-between items-center w-full px-4 md:px-8 py-3 md:py-5 max-w-7xl mx-auto">
       <div class="text-lg sm:text-xl md:text-3xl font-serif font-bold text-[#1F3A5F] uppercase tracking-[0.2em] md:tracking-widest">
@@ -170,7 +157,6 @@
   </header>
 
   <main class="pt-20 md:pt-24">
-    <!-- Section 1: Hero -->
     <section class="relative min-h-[70vh] md:h-[850px] flex items-center overflow-hidden" id="hero">
       <div class="absolute inset-0 z-0">
         <img
@@ -196,11 +182,21 @@
             <div class="flex items-center gap-3 font-bold"><span class="material-symbols-outlined text-xl md:text-2xl">group</span> 9 位文化紀錄者席位</div>
             <div class="flex items-center gap-3 font-bold"><span class="material-symbols-outlined text-xl md:text-2xl">location_on</span> <a href="../">昆明 • 大理 • 麗江 • 香格里拉</a></div>
           </div>
+
+          <div class="mt-6 flex flex-wrap gap-3 text-white/90 text-xs sm:text-sm md:text-base font-bold">
+            <span class="px-3 py-1 rounded-full bg-white/15">D1｜3/29（日）昆明</span>
+            <span class="px-3 py-1 rounded-full bg-white/15">D2｜3/30（一）大理</span>
+            <span class="px-3 py-1 rounded-full bg-white/15">D3｜3/31（二）大理</span>
+            <span class="px-3 py-1 rounded-full bg-white/15">D4｜4/1（三）麗江</span>
+            <span class="px-3 py-1 rounded-full bg-white/15">D5｜4/2（四）麗江</span>
+            <span class="px-3 py-1 rounded-full bg-white/15">D6｜4/3（五）香格里拉</span>
+            <span class="px-3 py-1 rounded-full bg-white/15">D7｜4/4（六）香格里拉</span>
+            <span class="px-3 py-1 rounded-full bg-white/15">D8｜4/5（日）返程</span>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- Section 2: Flight Information -->
     <section class="py-16 md:py-20 max-w-screen-2xl mx-auto px-4 md:px-8">
       <div class="bg-primary-container/10 border border-primary/10 rounded-3xl p-6 md:p-12 overflow-hidden relative">
         <div class="absolute top-0 right-0 p-6 md:p-12 opacity-10">
@@ -214,7 +210,6 @@
           </h3>
 
           <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
-            <!-- Departure -->
             <div class="flex flex-col gap-6">
               <div class="flex gap-4 md:gap-6 items-center border-b border-primary/10 pb-4">
                 <div class="bg-white p-4 md:p-5 rounded-2xl shadow-sm text-center min-w-[100px] md:min-w-[120px]">
@@ -251,7 +246,6 @@
               </div>
             </div>
 
-            <!-- Return -->
             <div class="flex flex-col gap-6">
               <div class="flex gap-4 md:gap-6 items-center border-b border-primary/10 pb-4">
                 <div class="bg-white p-4 md:p-5 rounded-2xl shadow-sm text-center min-w-[100px] md:min-w-[120px]">
@@ -292,7 +286,6 @@
       </div>
     </section>
 
-    <!-- Section 3: Trip Highlights -->
     <section class="py-16 md:py-24 bg-surface-container-lowest" id="highlights">
       <div class="max-w-screen-2xl mx-auto px-4 md:px-8">
         <div class="mb-12 md:mb-16 text-center">
@@ -326,7 +319,6 @@
           </div>
         </div>
 
-        <!-- Updated Featured Cuisine -->
         <div class="py-16 md:py-24 border-t border-primary/5 mt-16">
           <div class="mb-12">
             <span class="text-on-tertiary-container text-sm font-extrabold tracking-widest uppercase block mb-4">地道風味</span>
@@ -398,7 +390,6 @@
       </div>
     </section>
 
-    <!-- Weather & Safety Alert Section -->
     <section class="bg-[#1F3A5F] py-12 md:py-16 text-white overflow-hidden relative">
       <div class="grain-texture absolute inset-0 opacity-10"></div>
       <div class="max-w-screen-2xl mx-auto px-4 md:px-8 relative z-10">
@@ -442,17 +433,16 @@
       </div>
     </section>
 
-    <!-- Section 4: Days Overview Navigation -->
     <section class="bg-surface py-4 md:py-8 md:sticky md:top-20 z-40 border-b border-primary/10 shadow-sm">
       <div class="max-w-screen-2xl mx-auto px-4 md:px-8">
         <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <div class="overflow-x-auto no-scrollbar">
             <div class="flex flex-nowrap md:flex-wrap gap-6 md:gap-x-12 md:gap-y-6 items-center min-w-max">
               <button class="text-on-tertiary-container font-extrabold text-sm md:text-xl uppercase tracking-[0.15em] md:tracking-widest border-b-2 border-on-tertiary-container pb-2 whitespace-nowrap">完整行程內容</button>
-              <a class="text-on-surface-variant hover:text-primary transition-colors text-sm md:text-xl uppercase tracking-[0.12em] md:tracking-widest pb-2 font-bold whitespace-nowrap" href="#day1">昆明 (D1)</a>
-              <a class="text-on-surface-variant hover:text-primary transition-colors text-sm md:text-xl uppercase tracking-[0.12em] md:tracking-widest pb-2 font-bold whitespace-nowrap" href="#day2">大理 (D2-3)</a>
-              <a class="text-on-surface-variant hover:text-primary transition-colors text-sm md:text-xl uppercase tracking-[0.12em] md:tracking-widest pb-2 font-bold whitespace-nowrap" href="#day4">麗江 (D4-5)</a>
-              <a class="text-on-surface-variant hover:text-primary transition-colors text-sm md:text-xl uppercase tracking-[0.12em] md:tracking-widest pb-2 font-bold whitespace-nowrap" href="#day6">香格里拉 (D6-8)</a>
+              <a class="text-on-surface-variant hover:text-primary transition-colors text-sm md:text-xl uppercase tracking-[0.12em] md:tracking-widest pb-2 font-bold whitespace-nowrap" href="#day1">昆明 (D1｜3/29)</a>
+              <a class="text-on-surface-variant hover:text-primary transition-colors text-sm md:text-xl uppercase tracking-[0.12em] md:tracking-widest pb-2 font-bold whitespace-nowrap" href="#day2">大理 (D2-3｜3/30–3/31)</a>
+              <a class="text-on-surface-variant hover:text-primary transition-colors text-sm md:text-xl uppercase tracking-[0.12em] md:tracking-widest pb-2 font-bold whitespace-nowrap" href="#day4">麗江 (D4-5｜4/1–4/2)</a>
+              <a class="text-on-surface-variant hover:text-primary transition-colors text-sm md:text-xl uppercase tracking-[0.12em] md:tracking-widest pb-2 font-bold whitespace-nowrap" href="#day6">香格里拉 (D6-8｜4/3–4/5)</a>
             </div>
           </div>
 
@@ -464,7 +454,6 @@
       </div>
     </section>
 
-    <!-- Section 5: Daily Details -->
     <section class="py-16 md:py-32 max-w-screen-2xl mx-auto px-4 md:px-8 space-y-20 md:space-y-64" id="daily-details">
       <!-- Day 1 -->
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-20 items-center" id="day1">
@@ -474,22 +463,32 @@
             <img alt="Arrival in Kunming" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJzG30vUmP4ZpCtAFPp6meIBncA-0JRI4anL2rOh3HcAwdOtYWEFZgabnQv4VHQ4h8rDQJCsLFvQ6_lMUsz8Nh0c8ZYTaBar8q9sOL40WkIjHYQ38o1uENy9xFV4ZjuZNlECJvvvWSLguM9XCCrbEh5v-c9vgW28wdJ1BlLRGTQIGZAJbgZTvl3DHjkCmHW7ZrJFv8wCOIKzqiMBT2dI2jlKun-yisph7qdk451JoWyvTGUgzKIH9Ra0Min-faS9ZEHnur_Nwm_w" />
           </div>
 
+          <div class="weather-card-mobile mt-4 bg-white/90 p-4 rounded-2xl shadow-lg border border-primary/5">
+            <div class="flex items-center gap-3">
+              <span class="material-symbols-outlined text-on-tertiary-container text-3xl">partly_cloudy_day</span>
+              <div class="text-primary">
+                <div class="font-bold text-base">昆明｜8°C - 24°C</div>
+                <a class="text-xs font-bold text-secondary hover:underline" href="https://www.baidu.com/s?wd=%E6%98%86%E6%98%8E%E5%A4%A9%E6%B0%94&ie=utf-8" target="_blank" rel="noopener noreferrer">查看百度天氣</a>
+              </div>
+            </div>
+          </div>
+
           <div class="absolute bottom-10 -right-10 glass-effect bg-white/85 p-8 rounded-2xl max-w-sm shadow-2xl hidden md:block border border-primary/5">
             <div class="flex items-center gap-3 mb-4">
               <span class="material-symbols-outlined text-on-tertiary-container text-3xl">partly_cloudy_day</span>
               <div class="text-primary">
                 <div class="font-bold text-base">8°C - 24°C</div>
-                <a class="text-[10px] uppercase tracking-widest font-bold opacity-60 hover:text-secondary hover:opacity-100 transition-opacity" href="https://weathernew.baidu.com/v1/weather" target="_blank" rel="noopener noreferrer">昆明 • 晴時多雲 • [數據來源：百度天氣]</a>
+                <a class="text-[10px] uppercase tracking-widest font-bold opacity-60 hover:text-secondary hover:opacity-100 transition-opacity" href="https://www.baidu.com/s?wd=%E6%98%86%E6%98%8E%E5%A4%A9%E6%B0%94&ie=utf-8" target="_blank" rel="noopener noreferrer">昆明 • 天氣詳情 • [數據來源：百度天氣]</a>
               </div>
             </div>
-            <h4 class="font-bold text-primary mb-3 text-base uppercase tracking-widest">第一日：抵達春城</h4>
+            <h4 class="font-bold text-primary mb-3 text-base uppercase tracking-widest">第一日｜3/29（日）抵達春城</h4>
             <p class="text-sm text-primary leading-relaxed italic font-bold">「踏上這座永恆的春之城，讓溫潤的高原氣息為未來的旅程定下舒緩的節奏。」</p>
           </div>
         </div>
 
         <div class="lg:col-span-5 space-y-8 md:space-y-10">
           <div>
-            <span class="text-on-tertiary-container text-sm font-extrabold tracking-widest uppercase block mb-4 md:mb-6">階段 1: 抵達與初見 (昆明) • D1</span>
+            <span class="text-on-tertiary-container text-sm font-extrabold tracking-widest uppercase block mb-4 md:mb-6">階段 1: 抵達與初見 (昆明) • D1｜3/29（日）</span>
             <h2 class="serif-title text-3xl sm:text-4xl md:text-6xl text-primary font-bold leading-tight">歡迎來到永恆的春之城</h2>
           </div>
 
@@ -517,18 +516,16 @@
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-20 items-center" id="day2">
         <div class="lg:col-span-5 order-2 lg:order-1 space-y-8 md:space-y-10">
           <div>
-            <span class="text-on-tertiary-container text-sm font-extrabold tracking-widest uppercase block mb-4 md:mb-6">階段 2: 洱海之光與白族遺產 (大理) • D2-3</span>
+            <span class="text-on-tertiary-container text-sm font-extrabold tracking-widest uppercase block mb-4 md:mb-6">階段 2: 洱海之光與白族遺產 (大理) • D2-3｜3/30（一）–3/31（二）</span>
             <h2 class="serif-title text-3xl sm:text-4xl md:text-6xl text-primary font-bold leading-tight">白族之魂：洱海與古老工藝</h2>
           </div>
 
-          <div class="space-y-6">
-            <p class="text-on-surface-variant text-base md:text-xl leading-relaxed font-bold">
-              <strong class="text-primary">D2：</strong>深入周城扎染手作工坊。聞著淡淡的青靛染液氣味，感受每一道皺褶紀錄的匠心溫度。下午沿著洱海廊道輕騎，看波光粼粼的湖面。
-            </p>
-            <p class="text-on-surface-variant text-base md:text-xl leading-relaxed font-bold">
-              <strong class="text-primary">D3：</strong>清晨的大理古城最具市井氣。下午前往喜洲古鎮，參觀極具白族特色的「三坊一照壁」建築，感受雕梁畫棟間的歷史韻味。
-            </p>
-          </div>
+          <p class="text-on-surface-variant text-base md:text-xl leading-relaxed font-bold">
+            <strong class="text-primary">D2｜3/30（一）：</strong>深入周城扎染手作工坊。聞著淡淡的青靛染液氣味，感受每一道皺褶紀錄的匠心溫度。下午沿著洱海廊道輕騎，看波光粼粼的湖面。
+          </p>
+          <p class="text-on-surface-variant text-base md:text-xl leading-relaxed font-bold">
+            <strong class="text-primary">D3｜3/31（二）：</strong>清晨的大理古城最具市井氣。下午前往喜洲古鎮，參觀極具白族特色的「三坊一照壁」建築，感受雕梁畫棟間的歷史韻味。
+          </p>
 
           <ul class="space-y-5 md:space-y-6 border-l-4 border-on-tertiary-container/30 pl-6 md:pl-8">
             <li class="flex items-center text-primary font-bold text-base md:text-lg">
@@ -551,17 +548,26 @@
             <img alt="Dali Erhai" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCsdYnjWgoG2ld24soW-ApO66VHlhZcmTp4zaEuZO5qyg0kXKZEVmAhuNUGbjBTKCq1pNrPQGrCc10zZC9-kzwVcf21yTYCDyuEUjphKMeqtNpUmQzLcpbV39ytc7LzowMaawSoPJTdmk7BMkV5tOvH1me139g_au6pWJIwxSwcJR-hqDDZvd092m8PXg70GEThYGvBfB2gDi_SJ3yfSl1rKJSTxFxTxlyBZq9egFijg2SKrSWsAKYdUIQYMRTyrB14zv1s1azRGw" />
           </div>
 
+          <div class="weather-card-mobile mt-4 bg-white/90 p-4 rounded-2xl shadow-lg border border-primary/5">
+            <div class="flex items-center gap-3">
+              <span class="material-symbols-outlined text-on-tertiary-container text-3xl">wb_sunny</span>
+              <div class="text-primary">
+                <div class="font-bold text-base">大理｜7°C - 23°C</div>
+                <a class="text-xs font-bold text-secondary hover:underline" href="https://www.baidu.com/s?rsv_idx=1&wd=%E5%A4%A7%E7%90%86%E5%A4%A9%E6%B0%94&fenlei=256&usm=1&ie=utf-8&f=12&rsp=0&rqlang=cn&rsv_pq=8af0a1b400fccc03&oq=%E5%A4%A7%E9%87%8C%E5%A4%A9%E6%B0%A3&rsv_t=2e59IS6jBmeC53W0r9HXR1EWQOpWLGXoeABW66wmf8DpDnRIJck%2BfWXoQhM" target="_blank" rel="noopener noreferrer">查看百度天氣</a>
+              </div>
+            </div>
+          </div>
+
           <div class="hidden md:flex absolute top-8 left-8 glass-effect bg-white/85 p-6 rounded-2xl shadow-xl border border-primary/5 items-center gap-4">
             <span class="material-symbols-outlined text-on-tertiary-container text-4xl">wb_sunny</span>
             <div class="text-primary">
               <div class="font-bold text-xl">7°C - 23°C</div>
-              <a class="text-[10px] uppercase tracking-widest font-bold opacity-60 hover:text-secondary hover:opacity-100 transition-opacity" href="https://weathernew.baidu.com/v1/weather" target="_blank" rel="noopener noreferrer">大理 • 晴朗 • [數據來源：百度天氣]</a>
+              <a class="text-[10px] uppercase tracking-widest font-bold opacity-60 hover:text-secondary hover:opacity-100 transition-opacity" href="https://www.baidu.com/s?rsv_idx=1&wd=%E5%A4%A7%E7%90%86%E5%A4%A9%E6%B0%94&fenlei=256&usm=1&ie=utf-8&f=12&rsp=0&rqlang=cn&rsv_pq=8af0a1b400fccc03&oq=%E5%A4%A7%E9%87%8C%E5%A4%A9%E6%B0%A3&rsv_t=2e59IS6jBmeC53W0r9HXR1EWQOpWLGXoeABW66wmf8DpDnRIJck%2BfWXoQhM" target="_blank" rel="noopener noreferrer">大理 • 天氣詳情 • [數據來源：百度天氣]</a>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Ethnic Culture Section -->
       <div class="bg-surface-container-low rounded-[2rem] p-6 md:p-16 shadow-inner border border-primary/5">
         <div class="max-w-4xl mx-auto">
           <span class="text-on-tertiary-container text-sm font-extrabold tracking-[0.4em] uppercase block mb-6 text-center">文化共融</span>
@@ -607,12 +613,13 @@
               </div>
 
               <div class="rounded-2xl overflow-hidden aspect-[4/5] shadow-xl relative group">
-                <img alt="Lijiang Old Town" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtibQC37yEOQ9MriSdL7JgF2HrVTpOnUK9UMxUL2doAjdzwQfFCf-b5-Kmv7nTcF9iQhLBzPGRY0ojHHXlhOvQP-w7a3HLV6XW0Vi1CsixN2_o-HO5BcvvjKdW_5bF6icmCPoy_cI4TYJQ_M7_RNXQ-wJ_EMx3_J9deaWYUMRrhYgfEetvRJK7bdaOA4qQJDeDUCQ0_BC3wkfx0DSnz6y_gFd0cyl2fdscLY6qDJ_5xFiinlL-ZOQ1qMdqd2xI9C-a484Zhb67Hg"/><div class="absolute top-4 left-4 glass-effect bg-white/80 p-3 rounded-xl border border-white/40 shadow-lg hidden md:block">
+                <img alt="Lijiang Old Town" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtibQC37yEOQ9MriSdL7JgF2HrVTpOnUK9UMxUL2doAjdzwQfFCf-b5-Kmv7nTcF9iQhLBzPGRY0ojHHXlhOvQP-w7a3HLV6XW0Vi1CsixN2_o-HO5BcvvjKdW_5bF6icmCPoy_cI4TYJQ_M7_RNXQ-wJ_EMx3_J9deaWYUMRrhYgfEetvRJK7bdaOA4qQJDeDUCQ0_BC3wkfx0DSnz6y_gFd0cyl2fdscLY6qDJ_5xFiinlL-ZOQ1qMdqd2xI9C-a484Zhb67Hg" />
+                <div class="absolute top-4 left-4 glass-effect bg-white/80 p-3 rounded-xl border border-white/40 shadow-lg hidden md:block">
                   <div class="flex items-center gap-2">
                     <span class="material-symbols-outlined text-on-tertiary-container text-2xl">wb_sunny</span>
                     <div class="flex flex-col">
                       <span class="font-bold text-primary text-sm">5°C - 21°C</span>
-                      <a class="text-[8px] uppercase tracking-tighter opacity-60 hover:text-secondary hover:opacity-100" href="https://weathernew.baidu.com/v1/weather" target="_blank" rel="noopener noreferrer">數據來源：百度天氣</a>
+                      <a class="text-[8px] uppercase tracking-tighter opacity-60 hover:text-secondary hover:opacity-100" href="https://www.baidu.com/s?wd=%E4%B8%BD%E6%B1%9F%E5%A4%A9%E6%B0%94&ie=utf-8" target="_blank" rel="noopener noreferrer">天氣詳情：百度天氣</a>
                     </div>
                   </div>
                 </div>
@@ -625,20 +632,30 @@
               </div>
             </div>
           </div>
+
+          <div class="weather-card-mobile mt-4 bg-white/90 p-4 rounded-2xl shadow-lg border border-primary/5">
+            <div class="flex items-center gap-3">
+              <span class="material-symbols-outlined text-on-tertiary-container text-3xl">wb_sunny</span>
+              <div class="text-primary">
+                <div class="font-bold text-base">麗江｜5°C - 21°C</div>
+                <a class="text-xs font-bold text-secondary hover:underline" href="https://www.baidu.com/s?wd=%E4%B8%BD%E6%B1%9F%E5%A4%A9%E6%B0%94&ie=utf-8" target="_blank" rel="noopener noreferrer">查看百度天氣</a>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div class="lg:col-span-5 space-y-8 md:space-y-10">
           <div>
-            <span class="text-on-tertiary-container text-sm font-extrabold tracking-widest uppercase block mb-4 md:mb-6">階段 3: 雪山之巔與石板路之夢 (麗江) • D4-5</span>
+            <span class="text-on-tertiary-container text-sm font-extrabold tracking-widest uppercase block mb-4 md:mb-6">階段 3: 雪山之巔與石板路之夢 (麗江) • D4-5｜4/1（三）–4/2（四）</span>
             <h2 class="serif-title text-3xl sm:text-4xl md:text-6xl text-primary font-bold leading-tight">雪峰聖境與古道晨曦</h2>
           </div>
 
           <div class="space-y-6">
             <p class="text-on-surface-variant text-base md:text-xl leading-relaxed font-bold">
-              <strong class="text-primary">D4：</strong>乘索道抵達海拔 4506 米的玉龍雪山冰川公園，萬年冰川的壯麗絕對是視覺的饗宴。晚間入住隱廬秀園，在靜謐的古城院落中聽著古道流水的聲音。
+              <strong class="text-primary">D4｜4/1（三）：</strong>乘索道抵達海拔 4506 米的玉龍雪山冰川公園，萬年冰川的壯麗絕對是視覺的饗宴。晚間入住隱廬秀園，在靜謐的古城院落中聽著古道流水的聲音。
             </p>
             <p class="text-on-surface-variant text-base md:text-xl leading-relaxed font-bold">
-              <strong class="text-primary">D5：</strong>前往束河古鎮與白沙古鎮，在這裡可以看到雪山下的塗鴉牆，在古樸的老街喝一杯精品咖啡，感受時光交錯的美感。
+              <strong class="text-primary">D5｜4/2（四）：</strong>前往束河古鎮與白沙古鎮，在這裡可以看到雪山下的塗鴉牆，在古樸的老街喝一杯精品咖啡，感受時光交錯的美感。
             </p>
           </div>
 
@@ -662,19 +679,19 @@
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-20 items-center" id="day6">
         <div class="lg:col-span-5 space-y-8 md:space-y-10">
           <div>
-            <span class="text-on-tertiary-container text-sm font-extrabold tracking-widest uppercase block mb-4 md:mb-6">階段 4: 神聖的地平線 (香格里拉) • D6-8</span>
+            <span class="text-on-tertiary-container text-sm font-extrabold tracking-widest uppercase block mb-4 md:mb-6">階段 4: 神聖的地平線 (香格里拉) • D6-8｜4/3（五）–4/5（日）</span>
             <h2 class="serif-title text-3xl sm:text-4xl md:text-6xl text-primary font-bold leading-tight">心靈的終極聖殿</h2>
           </div>
 
           <div class="space-y-6">
             <p class="text-on-surface-variant text-base md:text-xl leading-relaxed font-bold">
-              <strong class="text-primary">D6：</strong>進入香格里拉的高山草原。入住頤庭酒店，飯店提供貼心的彌散式供氧，讓您在高原之夜也能安穩入眠。
+              <strong class="text-primary">D6｜4/3（五）：</strong>進入香格里拉的高山草原。入住頤庭酒店，飯店提供貼心的彌散式供氧，讓您在高原之夜也能安穩入眠。
             </p>
             <p class="text-on-surface-variant text-base md:text-xl leading-relaxed font-bold">
-              <strong class="text-primary">D7：</strong>朝聖「小布達拉宮」松贊林寺，看耀眼的紅牆金頂。下午前往納帕海依拉草原，看牛羊悠閒漫步。
+              <strong class="text-primary">D7｜4/4（六）：</strong>朝聖「小布達拉宮」松贊林寺，看耀眼的紅牆金頂。下午前往納帕海依拉草原，看牛羊悠閒漫步。
             </p>
             <p class="text-on-surface-variant text-base md:text-xl leading-relaxed font-bold">
-              <strong class="text-primary">D8：</strong>帶著滿滿的高原回憶與檔案記錄前往機場，結束這場如夢似幻的旅程。
+              <strong class="text-primary">D8｜4/5（日）：</strong>帶著滿滿的高原回憶與檔案記錄前往機場，結束這場如夢似幻的旅程。
             </p>
           </div>
 
@@ -700,12 +717,22 @@
 
           <div class="absolute -top-4 md:-top-6 -right-4 md:-right-6 bg-on-tertiary-container text-white px-5 md:px-8 py-3 md:py-4 rounded-full font-bold text-xs md:text-sm uppercase tracking-widest shadow-xl">終極聖所</div>
 
+          <div class="weather-card-mobile mt-4 bg-white/90 p-4 rounded-2xl shadow-lg border border-primary/5">
+            <div class="flex items-center gap-3">
+              <span class="material-symbols-outlined text-on-tertiary-container text-3xl">ac_unit</span>
+              <div class="text-primary">
+                <div class="font-bold text-base">香格里拉｜-2°C - 15°C</div>
+                <a class="text-xs font-bold text-secondary hover:underline" href="https://www.baidu.com/s?wd=%E9%A6%99%E6%A0%BC%E9%87%8C%E6%8B%89%E5%A4%A9%E6%B0%94&ie=utf-8" target="_blank" rel="noopener noreferrer">查看百度天氣</a>
+              </div>
+            </div>
+          </div>
+
           <div class="hidden md:block absolute bottom-8 right-8 glass-effect bg-white/85 p-6 rounded-2xl shadow-xl border border-primary/5">
             <div class="flex items-center gap-4">
               <span class="material-symbols-outlined text-on-tertiary-container text-4xl">ac_unit</span>
               <div class="text-primary">
                 <div class="font-bold text-xl">-2°C - 15°C</div>
-                <a class="text-[10px] uppercase tracking-widest font-bold opacity-60 hover:text-secondary hover:opacity-100 transition-opacity" href="https://weathernew.baidu.com/v1/weather" target="_blank" rel="noopener noreferrer">香格里拉 • 晴冷 • [數據來源：百度天氣]</a>
+                <a class="text-[10px] uppercase tracking-widest font-bold opacity-60 hover:text-secondary hover:opacity-100 transition-opacity" href="https://www.baidu.com/s?wd=%E9%A6%99%E6%A0%BC%E9%87%8C%E6%8B%89%E5%A4%A9%E6%B0%94&ie=utf-8" target="_blank" rel="noopener noreferrer">香格里拉 • 天氣詳情 • [數據來源：百度天氣]</a>
               </div>
             </div>
           </div>
@@ -713,7 +740,6 @@
       </div>
     </section>
 
-    <!-- Section 6: Pre-trip Info -->
     <section class="bg-surface-container-low py-16 md:py-32" id="pre-trip">
       <div class="max-w-screen-2xl mx-auto px-4 md:px-8">
         <div class="flex flex-col lg:flex-row gap-10 md:gap-20">
@@ -779,7 +805,6 @@
       </div>
     </section>
 
-    <!-- Section 7: Footer CTA Section -->
     <section class="bg-primary py-20 md:py-40 relative overflow-hidden">
       <div class="grain-texture absolute inset-0"></div>
       <div class="max-w-5xl mx-auto px-4 md:px-8 text-center relative z-10">
