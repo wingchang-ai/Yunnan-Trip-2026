@@ -99,11 +99,8 @@
 <a class="text-[#1F3A5F] hover:text-[#D9822B] transition-colors font-serif text-lg" href="#pre-trip">行前須知</a>
 </div>
 <div class="flex items-center gap-6">
-<button class="text-[#1F3A5F] hover:scale-105 duration-200">
-<span class="material-symbols-outlined text-3xl">share</span>
-</button>
-<button class="text-[#1F3A5F] hover:scale-105 duration-200">
-<span class="material-symbols-outlined text-3xl">language</span>
+<button onclick="sharePage()" class="text-[#1F3A5F] hover:scale-105 duration-200">
+  <span class="material-symbols-outlined text-3xl">share</span>
 </button>
 </div>
 </nav>
@@ -656,4 +653,24 @@
 <h2 class="serif-title text-6xl md:text-7xl text-white font-bold mb-16 leading-tight">一起去 <br/><span class="italic font-light">有風的地方</span></h2>
 <p class="text-white/80 text-2xl mb-12 max-w-3xl mx-auto font-medium">專屬 9 席位參與八日吹風詩意之旅，在最美的春日探尋滇西祕境。</p>
 </div>
-</section></main></body></html>
+</section></main><script>
+function sharePage() {
+  const url = window.location.href;
+
+  if (navigator.share) {
+    navigator.share({
+      title: document.title,
+      text: "雲南八日詩意之旅 ✨",
+      url: url
+    });
+  } else {
+    navigator.clipboard.writeText(url)
+      .then(() => {
+        alert("已複製連結，可以貼給朋友 ✨");
+      })
+      .catch(() => {
+        alert("複製失敗，請手動複製網址");
+      });
+  }
+}
+</script></body></html>
